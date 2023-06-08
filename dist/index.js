@@ -114,7 +114,7 @@ module.exports = MultiDecorator;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -230,7 +230,7 @@ module.exports = CharacterMetadata;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This file is a fork of ContentBlock adding support for nesting references by
@@ -383,7 +383,7 @@ module.exports = ContentBlockNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -430,7 +430,7 @@ module.exports = findRangesImmutable;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -464,7 +464,7 @@ module.exports = generateRandomKey;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -530,7 +530,7 @@ module.exports = getContentStateFragment;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -562,7 +562,7 @@ module.exports = getFragmentFromSelection;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -678,7 +678,7 @@ module.exports = randomizeBlockMapKeys;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -806,7 +806,7 @@ module.exports = removeEntitiesAtEdges;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -934,7 +934,7 @@ module.exports = function() {
  * LICENSE file in the root directory of this source tree.
  */
 
-if (false) { } else {
+if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
   module.exports = __webpack_require__(772)();
@@ -1031,7 +1031,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__111__;
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -1045,14 +1045,14 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__111__;
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -1065,7 +1065,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__111__;
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1077,12 +1077,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__111__;
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -1093,7 +1093,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__111__;
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -2777,7 +2777,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
     };
 
     // eslint-disable-next-line new-cap
-    _this.componentId = "BRAFT-MODAL-".concat(external_braft_utils_2_.BaseUtils.UniueIndex());
+    _this.componentId = "BRAFT-MODAL-".concat(external_braft_utils_2_.BaseUtils.UniqueIndex());
     return _this;
   }
   _createClass(Modal, [{
@@ -5493,7 +5493,7 @@ var toggleFontSize = function toggleFontSize(event, props) {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-  //console.log(props.editorState, fontSize, external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
+  console.log(props.editorState, fontSize, external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.requestFocus();
   return true;
@@ -6930,7 +6930,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       if (placeholder && fixPlaceholder && editorState.isEmpty() && editorState.getCurrentContent().getFirstBlock().getType() !== 'unstyled') {
         placeholder = '';
       }
-      //console.log(editorState);
+      console.log(editorState);
       var draftProps = editor_objectSpread(editor_objectSpread({
         ref: function ref(instance) {
           _this4.draftInstance = instance;

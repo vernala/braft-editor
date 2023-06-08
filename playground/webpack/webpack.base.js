@@ -27,7 +27,7 @@ module.exports = {
                 fs.readFileSync(path.resolve(__dirname, '../../.babelrc')),
               ),
             },
-          }
+          },
         ],
       },
       {
@@ -44,16 +44,17 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: [
+        type: 'asset/resource',
+        /* use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 20000,
+              limit: 200000,
               name: '[name].[ext]',
               publicPath: './',
             },
           },
-        ],
+        ], */
       },
     ],
   },
