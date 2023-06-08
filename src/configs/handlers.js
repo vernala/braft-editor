@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { ContentUtils, ColorUtils } from 'braft-utils';
+import { ContentUtils, ColorUtils } from 'braft-utils-2';
 import { RichUtils, Modifier, EditorState, ContentState } from 'draft-js';
 import getFragmentFromSelection from 'draft-js/lib/getFragmentFromSelection';
 import { handleNewLine } from 'draftjs-utils';

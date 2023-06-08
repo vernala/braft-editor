@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import './style.scss';
 
-const HorizontalLine = ({ editorState, block, editor }) => {
+function HorizontalLine({ editorState, block, editor }) {
   const removeHorizontalLine = () => {
     editor.setValue(ContentUtils.removeBlock(editorState, block));
   };
@@ -18,7 +18,7 @@ const HorizontalLine = ({ editorState, block, editor }) => {
       </div>
     </div>
   );
-};
+}
 
 HorizontalLine.propTypes = {
   editor: PropTypes.any,

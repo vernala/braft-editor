@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 import BuiltinColorPicker from 'components/common/ColorPicker';
@@ -51,7 +51,7 @@ class TextColor extends React.Component {
     }
 
     if (closePicker) {
-      this.dropDownInstance.hide();
+      this.dropDownInstance.current.hide();
       this.props.editor.requestFocus();
     }
     return true;

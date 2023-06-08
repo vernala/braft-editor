@@ -3,7 +3,7 @@ import {
   convertHTMLToEditorState,
   convertEditorStateToRaw,
   convertEditorStateToHTML,
-} from 'braft-convert';
+} from 'braft-convert-2';
 
 import {
   createExtensibleEditor,
@@ -64,8 +64,7 @@ EditorState.createFrom = (content, options = {}) => {
 
   if (content instanceof EditorState) {
     editorState = content;
-  }
-  if (
+  } else if (
     typeof content === 'object' &&
     content &&
     content.blocks &&
@@ -75,10 +74,9 @@ EditorState.createFrom = (content, options = {}) => {
       content,
       getDecorators(customOptions.editorId),
     );
-  }
-  if (typeof content === 'string') {
+  } else if (typeof content === 'string') {
     try {
-      if (/^(-)?\d+$/.test(content)) {
+      if (/<([a-z][\s\S]*)>.*<\/\1>/i.test(content)) {
         editorState = convertHTMLToEditorState(
           content,
           getDecorators(customOptions.editorId),
@@ -99,8 +97,7 @@ EditorState.createFrom = (content, options = {}) => {
         'create',
       );
     }
-  }
-  if (typeof content === 'number') {
+  } else if (typeof content === 'number') {
     editorState = convertHTMLToEditorState(
       content.toLocaleString().replace(/,/g, ''),
       getDecorators(customOptions.editorId),

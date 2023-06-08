@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 // import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon';
 
 // import BraftEditor from '../src_old';
-import BraftEditor from '../dist/index';
+// import BraftEditor from '../dist/index';
+import BraftEditor from '../src/index';
 
 import 'braft-extensions/dist/emoticon.css';
 import 'braft-extensions/dist/color-picker.css';
@@ -45,7 +46,7 @@ class App extends React.Component {
 
     this.state = {
       // readOnly: false,
-      // editorState: BraftEditor.createEditorState(),
+      editorState: BraftEditor.createEditorState('<div>test</div>'),
     };
   }
 
@@ -63,8 +64,8 @@ class App extends React.Component {
   };
 
   render() {
-    // const { readOnly, editorState } = this.state;
-
+    const { readOnly, editorState } = this.state;
+    console.log(editorState.toHTML())
     return (
       <div>
         <div className="demo" id="demo">
@@ -76,7 +77,7 @@ class App extends React.Component {
             // fixPlaceholder
             // allowInsertLinkText
             // triggerChangeOnMount={false}
-            // value={editorState}
+            value={editorState}
             // onChange={this.handleChange}
             // readOnly={readOnly}
             // hooks={hooks}

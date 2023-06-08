@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 
@@ -29,7 +29,7 @@ const toggleLetterSpacing = (event, props) => {
   return true;
 };
 
-const LetterSpacing = (props) => {
+function LetterSpacing(props) {
   let caption = null;
   let currentLetterSpacing = null;
   let dropDownInstance = null;
@@ -59,26 +59,24 @@ const LetterSpacing = (props) => {
       className="control-item dropdown bf-letter-spacing-dropdown"
     >
       <ul className="bf-letter-spacings">
-        {props.letterSpacings.map((item) => {
-          return (
-            <li
-              key={uuidv4()}
-              role="presentation"
-              className={item === currentLetterSpacing ? 'active' : null}
-              data-size={item}
-              onClick={(event) => {
-                toggleLetterSpacing(event, props);
-                dropDownInstance.hide();
-              }}
-            >
-              {item}
-            </li>
-          );
-        })}
+        {props.letterSpacings.map((item) => (
+          <li
+            key={uuidv4()}
+            role="presentation"
+            className={item === currentLetterSpacing ? 'active' : null}
+            data-size={item}
+            onClick={(event) => {
+              toggleLetterSpacing(event, props);
+              dropDownInstance.hide();
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     </DropDown>
   );
-};
+}
 
 LetterSpacing.propTypes = {
   headings: PropTypes.any,

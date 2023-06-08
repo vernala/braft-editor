@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 
@@ -25,7 +25,7 @@ const insertEmoji = (event, props) => {
   return true;
 };
 
-const EmojiPicker = (props) => {
+function EmojiPicker(props) {
   return (
     <DropDown
       caption={props.defaultCaption}
@@ -37,23 +37,21 @@ const EmojiPicker = (props) => {
     >
       <div className="bf-emojis-wrap">
         <ul className="bf-emojis">
-          {props.emojis.map((item) => {
-            return (
-              <li
-                key={uuidv4()}
-                data-emoji={item}
-                onClick={(event) => insertEmoji(event, props)}
-                role="presentation"
-              >
-                {item}
-              </li>
-            );
-          })}
+          {props.emojis.map((item) => (
+            <li
+              key={uuidv4()}
+              data-emoji={item}
+              onClick={(event) => insertEmoji(event, props)}
+              role="presentation"
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
     </DropDown>
   );
-};
+}
 
 EmojiPicker.propTypes = {
   defaultCaption: PropTypes.any,

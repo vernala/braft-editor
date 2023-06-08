@@ -1,13 +1,13 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import PlayerModal from 'components/business/PlayerModal';
 
 import './style.scss';
 
-const Embed = ({ mediaData, language, editor, editorState, block }) => {
+function Embed({ mediaData, language, editor, editorState, block }) {
   const { name, url, meta } = mediaData;
 
   const removeEmbed = () => {
@@ -31,7 +31,7 @@ const Embed = ({ mediaData, language, editor, editorState, block }) => {
       </PlayerModal>
     </div>
   );
-};
+}
 
 Embed.propTypes = {
   mediaData: PropTypes.any,

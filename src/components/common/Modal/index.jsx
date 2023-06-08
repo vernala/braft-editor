@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { BaseUtils } from 'braft-utils';
+import { BaseUtils } from 'braft-utils-2';
 import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import './style.scss';
@@ -79,7 +79,7 @@ class Modal extends React.Component {
 
       if(this.state.visible){
         this.active = true;
-        this.renderComponent(next);
+        this.renderComponent(this.props);
       }else{
         this.unrenderComponent();
       }
@@ -88,6 +88,7 @@ class Modal extends React.Component {
     }
   }
 
+  // eslint-disable-next-line react/sort-comp
   componentDidMount() {
     if (this.props.visible) {
       this.active = true;
@@ -96,7 +97,7 @@ class Modal extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps,prevState){
-    if(prevState.visible !== !!nextProps.visible){
+    if(prevState.visible !== !!nextProps?.visible){
       return {
         visible:!!nextProps.visible,
         exec:true,

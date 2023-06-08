@@ -1,5 +1,5 @@
 /* eslint-disable new-cap */
-import { BaseUtils } from 'braft-utils';
+import { BaseUtils } from 'braft-utils-2';
 
 let resizeEventHandlers = [];
 let responsiveHelperInited = false;

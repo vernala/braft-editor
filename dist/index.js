@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("braft-convert"), require("braft-finder"), require("braft-utils"), require("draft-js"), require("draftjs-utils"), require("immutable"), require("react"), require("react-dom"));
+		module.exports = factory(require("braft-convert-2"), require("braft-finder-2"), require("braft-utils-2"), require("draft-js"), require("draftjs-utils"), require("immutable"), require("react"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define(["braft-convert", "braft-finder", "braft-utils", "draft-js", "draftjs-utils", "immutable", "react", "react-dom"], factory);
+		define(["braft-convert-2", "braft-finder-2", "braft-utils-2", "draft-js", "draftjs-utils", "immutable", "react", "react-dom"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("braft-convert"), require("braft-finder"), require("braft-utils"), require("draft-js"), require("draftjs-utils"), require("immutable"), require("react"), require("react-dom")) : factory(root["braft-convert"], root["braft-finder"], root["braft-utils"], root["draft-js"], root["draftjs-utils"], root["immutable"], root["react"], root["react-dom"]);
+		var a = typeof exports === 'object' ? factory(require("braft-convert-2"), require("braft-finder-2"), require("braft-utils-2"), require("draft-js"), require("draftjs-utils"), require("immutable"), require("react"), require("react-dom")) : factory(root["braft-convert-2"], root["braft-finder-2"], root["braft-utils-2"], root["draft-js"], root["draftjs-utils"], root["immutable"], root["react"], root["react-dom"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(self, (__WEBPACK_EXTERNAL_MODULE__536__, __WEBPACK_EXTERNAL_MODULE__540__, __WEBPACK_EXTERNAL_MODULE__937__, __WEBPACK_EXTERNAL_MODULE__256__, __WEBPACK_EXTERNAL_MODULE__703__, __WEBPACK_EXTERNAL_MODULE__292__, __WEBPACK_EXTERNAL_MODULE__156__, __WEBPACK_EXTERNAL_MODULE__111__) => {
+})(self, (__WEBPACK_EXTERNAL_MODULE__194__, __WEBPACK_EXTERNAL_MODULE__121__, __WEBPACK_EXTERNAL_MODULE__601__, __WEBPACK_EXTERNAL_MODULE__256__, __WEBPACK_EXTERNAL_MODULE__703__, __WEBPACK_EXTERNAL_MODULE__292__, __WEBPACK_EXTERNAL_MODULE__156__, __WEBPACK_EXTERNAL_MODULE__111__) => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -963,27 +963,27 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 536:
+/***/ 194:
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_MODULE__536__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__194__;
 
 /***/ }),
 
-/***/ 540:
+/***/ 121:
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_MODULE__540__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__121__;
 
 /***/ }),
 
-/***/ 937:
+/***/ 601:
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_MODULE__937__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__601__;
 
 /***/ }),
 
@@ -1154,8 +1154,8 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
-// EXTERNAL MODULE: external "braft-convert"
-var external_braft_convert_ = __webpack_require__(536);
+// EXTERNAL MODULE: external "braft-convert-2"
+var external_braft_convert_2_ = __webpack_require__(194);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(156);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -1785,8 +1785,8 @@ function v4(options, buf, offset) {
 }
 
 /* harmony default export */ const esm_browser_v4 = (v4);
-// EXTERNAL MODULE: external "braft-utils"
-var external_braft_utils_ = __webpack_require__(937);
+// EXTERNAL MODULE: external "braft-utils-2"
+var external_braft_utils_2_ = __webpack_require__(601);
 ;// CONCATENATED MODULE: ./configs/controls.jsx
 
 /* harmony default export */ const configs_controls = (function (lang, editor) {
@@ -2172,7 +2172,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "repareChangeSize", function (type) {
       return function (e) {
         _this.reSizeType = type;
-        var imageRect = _this.imageElement.getBoundingClientRect();
+        var imageRect = _this.imageElement.current.getBoundingClientRect();
         _this.initialTop = 0;
         _this.initialLeft = 0;
         _this.initialWidth = imageRect.width;
@@ -2222,7 +2222,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
       }
     });
     _defineProperty(_assertThisInitialized(_this), "removeImage", function () {
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.removeBlock(_this.props.editor.getValue(), _this.props.block));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.removeBlock(_this.props.editor.getValue(), _this.props.block));
       _this.unlockEditor();
     });
     _defineProperty(_assertThisInitialized(_this), "toggleLinkEditor", function () {
@@ -2261,7 +2261,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
         link = hookReturns;
       }
       if (link !== null) {
-        _this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, {
+        _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, {
           link: link
         }));
         window.setImmediate(_this.props.editor.forceRender);
@@ -2311,7 +2311,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
       if (hookReturns && (hookReturns.width || hookReturns.height)) {
         newImageSize = hookReturns;
       }
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
       window.setImmediate(_this.props.editor.forceRender);
       return true;
     });
@@ -2349,7 +2349,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
       if (hookReturns && (hookReturns.width || hookReturns.height)) {
         newImageSize = hookReturns;
       }
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
       window.setImmediate(_this.props.editor.forceRender);
       return true;
     });
@@ -2362,7 +2362,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
       if (typeof hookReturns === 'string') {
         newFloat = hookReturns;
       }
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         newFloat: newFloat
       }));
       _this.unlockEditor();
@@ -2377,7 +2377,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
       if (typeof hookReturns === 'string') {
         newAlignment = hookReturns;
       }
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         newAlignment: newAlignment
       }));
       _this.unlockEditor();
@@ -2432,8 +2432,8 @@ var Image = /*#__PURE__*/function (_React$Component) {
         return 0;
       }
       var viewRect = container.querySelector('.bf-content').getBoundingClientRect();
-      var toolbarRect = this.toolbarElement.getBoundingClientRect();
-      var imageRect = this.imageElement.getBoundingClientRect();
+      var toolbarRect = this.toolbarElement.current.getBoundingClientRect();
+      var imageRect = this.imageElement.current.getBoundingClientRect();
       var right = viewRect.right - (imageRect.right - imageRect.width / 2 + toolbarRect.width / 2);
       var left = imageRect.left + imageRect.width / 2 - toolbarRect.width / 2 - viewRect.left;
       if (right < 10) {
@@ -2456,7 +2456,7 @@ var Image = /*#__PURE__*/function (_React$Component) {
         newLinkTarget = hookReturns;
       }
       newLinkTarget = newLinkTarget === '_blank' ? '' : '_blank';
-      this.props.editor.setValue(external_braft_utils_.ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, {
+      this.props.editor.setValue(external_braft_utils_2_.ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, {
         newLinkTarget: newLinkTarget
       }));
       window.setImmediate(this.props.editor.forceRender);
@@ -2777,7 +2777,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
     };
 
     // eslint-disable-next-line new-cap
-    _this.componentId = "BRAFT-MODAL-".concat(external_braft_utils_.BaseUtils.UniueIndex());
+    _this.componentId = "BRAFT-MODAL-".concat(external_braft_utils_2_.BaseUtils.UniueIndex());
     return _this;
   }
   _createClass(Modal, [{
@@ -2786,7 +2786,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
       if (this.state.exec) {
         if (this.state.visible) {
           this.active = true;
-          this.renderComponent(next);
+          this.renderComponent(this.props);
         } else {
           this.unrenderComponent();
         }
@@ -2795,6 +2795,8 @@ var Modal = /*#__PURE__*/function (_React$Component) {
         });
       }
     }
+
+    // eslint-disable-next-line react/sort-comp
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -2899,7 +2901,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
-      if (prevState.visible !== !!nextProps.visible) {
+      if (prevState.visible !== !!(nextProps !== null && nextProps !== void 0 && nextProps.visible)) {
         return {
           visible: !!nextProps.visible,
           exec: true
@@ -3008,7 +3010,7 @@ PlayerModal.propTypes = {
 
 
 
-var Video = function Video(_ref) {
+function Video(_ref) {
   var mediaData = _ref.mediaData,
     language = _ref.language,
     editor = _ref.editor,
@@ -3020,7 +3022,7 @@ var Video = function Video(_ref) {
   var _meta$poster = meta.poster,
     poster = _meta$poster === void 0 ? '' : _meta$poster;
   var removeVideo = function removeVideo() {
-    editor.setValue(external_braft_utils_.ContentUtils.removeBlock(editorState, block));
+    editor.setValue(external_braft_utils_2_.ContentUtils.removeBlock(editorState, block));
   };
   return /*#__PURE__*/external_react_default().createElement("div", {
     className: "bf-video-wrap"
@@ -3040,7 +3042,7 @@ var Video = function Video(_ref) {
   }, /*#__PURE__*/external_react_default().createElement("source", {
     src: url
   })))));
-};
+}
 Video.propTypes = {
   mediaData: (prop_types_default()).any,
   language: (prop_types_default()).any,
@@ -3056,7 +3058,7 @@ Video.propTypes = {
 
 
 
-var Audio = function Audio(_ref) {
+function Audio(_ref) {
   var mediaData = _ref.mediaData,
     language = _ref.language,
     editor = _ref.editor,
@@ -3066,7 +3068,7 @@ var Audio = function Audio(_ref) {
     name = mediaData.name,
     meta = mediaData.meta;
   var removeAudio = function removeAudio() {
-    editor.setValue(external_braft_utils_.ContentUtils.removeBlock(editorState, block));
+    editor.setValue(external_braft_utils_2_.ContentUtils.removeBlock(editorState, block));
   };
   return /*#__PURE__*/external_react_default().createElement("div", {
     className: "bf-audio-wrap"
@@ -3084,7 +3086,7 @@ var Audio = function Audio(_ref) {
     controls: true,
     src: url
   }))));
-};
+}
 Audio.propTypes = {
   mediaData: (prop_types_default()).any,
   language: (prop_types_default()).any,
@@ -3100,7 +3102,7 @@ Audio.propTypes = {
 
 
 
-var Embed = function Embed(_ref) {
+function Embed(_ref) {
   var mediaData = _ref.mediaData,
     language = _ref.language,
     editor = _ref.editor,
@@ -3110,7 +3112,7 @@ var Embed = function Embed(_ref) {
     url = mediaData.url,
     meta = mediaData.meta;
   var removeEmbed = function removeEmbed() {
-    editor.setValue(external_braft_utils_.ContentUtils.removeBlock(editorState, block));
+    editor.setValue(external_braft_utils_2_.ContentUtils.removeBlock(editorState, block));
   };
   return /*#__PURE__*/external_react_default().createElement("div", {
     className: "bf-embed-wrap"
@@ -3128,7 +3130,7 @@ var Embed = function Embed(_ref) {
       __html: url
     }
   })));
-};
+}
 Embed.propTypes = {
   mediaData: (prop_types_default()).any,
   language: (prop_types_default()).any,
@@ -3142,12 +3144,12 @@ Embed.propTypes = {
 
 
 
-var HorizontalLine = function HorizontalLine(_ref) {
+function HorizontalLine(_ref) {
   var editorState = _ref.editorState,
     block = _ref.block,
     editor = _ref.editor;
   var removeHorizontalLine = function removeHorizontalLine() {
-    editor.setValue(external_braft_utils_.ContentUtils.removeBlock(editorState, block));
+    editor.setValue(external_braft_utils_2_.ContentUtils.removeBlock(editorState, block));
   };
   return /*#__PURE__*/external_react_default().createElement("div", {
     className: "bf-hr"
@@ -3157,7 +3159,7 @@ var HorizontalLine = function HorizontalLine(_ref) {
     role: "presentation",
     onClick: removeHorizontalLine
   }, "\uE9AC")));
-};
+}
 HorizontalLine.propTypes = {
   editor: (prop_types_default()).any,
   editorState: (prop_types_default()).any,
@@ -3505,9 +3507,9 @@ function _objectWithoutProperties(source, excluded) {
   }
   return target;
 }
-// EXTERNAL MODULE: external "braft-finder"
-var external_braft_finder_ = __webpack_require__(540);
-var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_braft_finder_);
+// EXTERNAL MODULE: external "braft-finder-2"
+var external_braft_finder_2_ = __webpack_require__(121);
+var external_braft_finder_2_default = /*#__PURE__*/__webpack_require__.n(external_braft_finder_2_);
 ;// CONCATENATED MODULE: ./languages/en.js
 /* harmony default export */ const en = ({
   base: {
@@ -4522,15 +4524,15 @@ var keyCommandHandlers = function keyCommandHandlers(command, editorState, edito
     if (editor.editorProps.onDelete && editor.editorProps.onDelete(editorState) === false) {
       return 'handled';
     }
-    var blockType = external_braft_utils_.ContentUtils.getSelectionBlockType(editorState);
+    var blockType = external_braft_utils_2_.ContentUtils.getSelectionBlockType(editorState);
     if (allowIndent && cursorIsAtFirst && blockType !== 'code-block') {
-      editor.setValue(external_braft_utils_.ContentUtils.decreaseSelectionIndent(editorState));
+      editor.setValue(external_braft_utils_2_.ContentUtils.decreaseSelectionIndent(editorState));
     }
   }
   if (command === 'tab') {
-    var _blockType = external_braft_utils_.ContentUtils.getSelectionBlockType(editorState);
+    var _blockType = external_braft_utils_2_.ContentUtils.getSelectionBlockType(editorState);
     if (_blockType === 'code-block') {
-      editor.setValue(external_braft_utils_.ContentUtils.insertText(editorState, ' '.repeat(editor.editorProps.codeTabIndents)));
+      editor.setValue(external_braft_utils_2_.ContentUtils.insertText(editorState, ' '.repeat(editor.editorProps.codeTabIndents)));
       return 'handled';
     }
     if (_blockType === 'ordered-list-item' || _blockType === 'unordered-list-item') {
@@ -4541,11 +4543,11 @@ var keyCommandHandlers = function keyCommandHandlers(command, editorState, edito
       return 'handled';
     }
     if (_blockType !== 'atomic' && allowIndent && cursorIsAtFirst) {
-      editor.setValue(external_braft_utils_.ContentUtils.increaseSelectionIndent(editorState));
+      editor.setValue(external_braft_utils_2_.ContentUtils.increaseSelectionIndent(editorState));
       return 'handled';
     }
   }
-  var nextEditorState = external_braft_utils_.ContentUtils.handleKeyCommand(editorState, command);
+  var nextEditorState = external_braft_utils_2_.ContentUtils.handleKeyCommand(editorState, command);
   if (nextEditorState) {
     editor.setValue(nextEditorState);
     return 'handled';
@@ -4556,18 +4558,18 @@ var returnHandlers = function returnHandlers(event, editorState, editor) {
   if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState, editor) === 'handled') {
     return 'handled';
   }
-  var currentBlock = external_braft_utils_.ContentUtils.getSelectionBlock(editorState);
+  var currentBlock = external_braft_utils_2_.ContentUtils.getSelectionBlock(editorState);
   var currentBlockType = currentBlock.getType();
   if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
     if (currentBlock.getLength() === 0) {
-      editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionBlockType(editorState, 'unstyled'));
+      editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionBlockType(editorState, 'unstyled'));
       return 'handled';
     }
     return 'not-handled';
   }
   if (currentBlockType === 'code-block') {
     if (event.which === 13 && (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control'))) {
-      editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionBlockType(editorState, 'unstyled'));
+      editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionBlockType(editorState, 'unstyled'));
       return 'handled';
     }
     return 'not-handled';
@@ -4598,7 +4600,7 @@ var beforeInputHandlers = function beforeInputHandlers(chars, editorState, edito
 };
 var compositionStartHandler = function compositionStartHandler(_, editor) {
   var editorState = editor.state.editorState;
-  var selectedBlocks = external_braft_utils_.ContentUtils.getSelectedBlocks(editorState);
+  var selectedBlocks = external_braft_utils_2_.ContentUtils.getSelectedBlocks(editorState);
   if (selectedBlocks && selectedBlocks.length > 1) {
     var nextEditorState = external_draft_js_.EditorState.push(editorState, external_draft_js_.Modifier.removeRange(editorState.getCurrentContent(), editorState.getSelection(), 'backward'), 'remove-range');
     editor.setValue(nextEditorState);
@@ -4610,8 +4612,8 @@ var dropHandlers = function dropHandlers(selectionState, dataTransfer, editor) {
   }
   if (window && window.__BRAFT_DRAGING__IMAGE__) {
     var nextEditorState = external_draft_js_.EditorState.forceSelection(editor.state.editorState, selectionState);
-    nextEditorState = external_braft_utils_.ContentUtils.insertMedias(nextEditorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]);
-    nextEditorState = external_braft_utils_.ContentUtils.removeBlock(nextEditorState, window.__BRAFT_DRAGING__IMAGE__.block, nextEditorState.getSelection());
+    nextEditorState = external_braft_utils_2_.ContentUtils.insertMedias(nextEditorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]);
+    nextEditorState = external_braft_utils_2_.ContentUtils.removeBlock(nextEditorState, window.__BRAFT_DRAGING__IMAGE__.block, nextEditorState.getSelection());
     window.__BRAFT_DRAGING__IMAGE__ = null;
     editor.lockOrUnlockEditor(true);
     editor.setValue(nextEditorState);
@@ -4635,14 +4637,14 @@ var handleFiles = function handleFiles(files, editor) {
           validateResult.then(function () {
             editor.braftFinder.uploadImage(file, function (image) {
               if (editor.isLiving) {
-                editor.setValue(external_braft_utils_.ContentUtils.insertMedias(editor.state.editorState, [image]));
+                editor.setValue(external_braft_utils_2_.ContentUtils.insertMedias(editor.state.editorState, [image]));
               }
             });
           });
         } else if (validateResult) {
           editor.braftFinder.uploadImage(file, function (image) {
             if (editor.isLiving) {
-              editor.setValue(external_braft_utils_.ContentUtils.insertMedias(editor.state.editorState, [image]));
+              editor.setValue(external_braft_utils_2_.ContentUtils.insertMedias(editor.state.editorState, [image]));
             }
           });
         }
@@ -4689,7 +4691,7 @@ var pastedTextHandlers = function pastedTextHandlers(text, html, editorState, ed
   if (!html || editor.editorProps.stripPastedStyles) {
     return false;
   }
-  var tempColors = external_braft_utils_.ColorUtils.detectColorsFromHTMLString(html);
+  var tempColors = external_braft_utils_2_.ColorUtils.detectColorsFromHTMLString(html);
   editor.setState({
     tempColors: [].concat(_toConsumableArray(editor.state.tempColors), _toConsumableArray(tempColors)).filter(function (item) {
       return editor.editorProps.colors.indexOf(item) === -1;
@@ -4697,7 +4699,7 @@ var pastedTextHandlers = function pastedTextHandlers(text, html, editorState, ed
       return array.indexOf(item) === index;
     })
   }, function () {
-    editor.setValue(external_braft_utils_.ContentUtils.insertHTML(editorState, html, 'paste'));
+    editor.setValue(external_braft_utils_2_.ContentUtils.insertHTML(editorState, html, 'paste'));
   });
   return 'handled';
 };
@@ -4710,7 +4712,7 @@ var responsiveHelperInited = false;
 var debouce = false;
 /* harmony default export */ const responsive = ({
   resolve: function resolve(eventHandler) {
-    var id = external_braft_utils_.BaseUtils.UniqueIndex();
+    var id = external_braft_utils_2_.BaseUtils.UniqueIndex();
     resizeEventHandlers.push({
       id: id,
       eventHandler: eventHandler
@@ -4775,8 +4777,8 @@ var DropDown = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "dropDownContentElement", /*#__PURE__*/external_react_default().createRef());
     _defineProperty(_assertThisInitialized(_this), "fixDropDownPosition", function () {
       var viewRect = _this.props.getContainerNode().getBoundingClientRect();
-      var handlerRect = _this.dropDownHandlerElement.getBoundingClientRect();
-      var contentRect = _this.dropDownContentElement.getBoundingClientRect();
+      var handlerRect = _this.dropDownHandlerElement.current.getBoundingClientRect();
+      var contentRect = _this.dropDownContentElement.current.getBoundingClientRect();
       var offset = 0;
       var right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2;
       var left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2;
@@ -4796,7 +4798,7 @@ var DropDown = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "registerClickEvent", function (event) {
       var autoHide = _this.props.autoHide;
       var active = _this.state.active;
-      if (_this.dropDownContentElement.contains(event.target) || _this.dropDownHandlerElement.contains(event.target)) {
+      if (_this.dropDownContentElement.current.contains(event.target) || _this.dropDownHandlerElement.current.contains(event.target)) {
         return false;
       }
       if (autoHide && active) {
@@ -4825,7 +4827,9 @@ var DropDown = /*#__PURE__*/function (_React$Component) {
   }
   _createClass(DropDown, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value:
+    // eslint-disable-next-line react/sort-comp
+    function componentDidMount() {
       if (document) {
         document.body.addEventListener('click', this.registerClickEvent);
         this.responsiveResolveId = responsive.resolve(this.fixDropDownPosition);
@@ -4833,7 +4837,7 @@ var DropDown = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevState) {
+    value: function componentDidUpdate(prevProps, prevState) {
       if (!prevState.active && this.state.active) {
         this.fixDropDownPosition();
       }
@@ -4899,7 +4903,7 @@ var DropDown = /*#__PURE__*/function (_React$Component) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
-      if (!prevState.disabled && nextProps.disabled) {
+      if (!prevState.disabled && nextProps !== null && nextProps !== void 0 && nextProps.disabled) {
         return {
           active: false,
           disabled: true
@@ -4946,6 +4950,10 @@ ControlGroup.propTypes = {
 
 
 
+
+
+var _excluded = ["children"],
+  _excluded2 = ["children"];
 function LinkEditor_createSuper(Derived) { var hasNativeReflectConstruct = LinkEditor_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 function LinkEditor_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /* eslint-disable camelcase */
@@ -4957,12 +4965,30 @@ function LinkEditor_isNativeReflectConstruct() { if (typeof Reflect === "undefin
 
 
 
+var generateNewObj = function generateNewObj(props) {
+  var cache = [];
+  var json_str = JSON.stringify(props, function (key, value) {
+    if (_typeof(value) === 'object' && value !== null) {
+      if (cache.indexOf(value) !== -1) {
+        return;
+      }
+      cache.push(value);
+    }
+    return value;
+  });
+  cache = null;
+  return json_str;
+};
 var LinkEditor = /*#__PURE__*/function (_React$Component) {
   _inherits(LinkEditor, _React$Component);
   var _super = LinkEditor_createSuper(LinkEditor);
   function LinkEditor(props) {
     var _this;
     _classCallCheck(this, LinkEditor);
+    var _ref = props || {},
+      children = _ref.children,
+      attrProps = _objectWithoutProperties(_ref, _excluded);
+    console.log(attrProps);
     _this = _super.call(this, props);
     _defineProperty(_assertThisInitialized(_this), "dropDownInstance", /*#__PURE__*/external_react_default().createRef());
     _defineProperty(_assertThisInitialized(_this), "handeKeyDown", function (e) {
@@ -4991,11 +5017,11 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
       });
     });
     _defineProperty(_assertThisInitialized(_this), "handleCancel", function () {
-      _this.dropDownInstance.hide();
+      _this.dropDownInstance.current.hide();
     });
     _defineProperty(_assertThisInitialized(_this), "handleUnlink", function () {
-      _this.dropDownInstance.hide();
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionLink(_this.props.editorState, false));
+      _this.dropDownInstance.current.hide();
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionLink(_this.props.editorState, false));
     });
     _defineProperty(_assertThisInitialized(_this), "handleConfirm", function () {
       var _this$state = _this.state,
@@ -5011,7 +5037,7 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
         href: href,
         target: target
       });
-      _this.dropDownInstance.hide();
+      _this.dropDownInstance.current.hide();
       _this.props.editor.requestFocus();
       if (hookReturns === false) {
         return false;
@@ -5026,12 +5052,12 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
       }
       if (textSelected) {
         if (href) {
-          _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionLink(_this.props.editorState, href, target));
+          _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionLink(_this.props.editorState, href, target));
         } else {
-          _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionLink(_this.props.editorState, false));
+          _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionLink(_this.props.editorState, false));
         }
       } else {
-        _this.props.editor.setValue(external_braft_utils_.ContentUtils.insertText(_this.props.editorState, text || href, null, {
+        _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.insertText(_this.props.editorState, text || href, null, {
           type: 'LINK',
           data: {
             href: href,
@@ -5045,7 +5071,8 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
       text: '',
       href: '',
       target: props.defaultLinkTarget || '',
-      textSelected: false
+      textSelected: false,
+      propsStr: generateNewObj(attrProps)
     };
     return _this;
   }
@@ -5126,23 +5153,27 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
-      if (!prevState.propsStr || prevState.propsStr != JSON.stringify(nextProps)) {
-        var _ContentUtils$getSele = external_braft_utils_.ContentUtils.getSelectionEntityData(nextProps.editorState, 'LINK'),
+      var _ref2 = nextProps || {},
+        children = _ref2.children,
+        attrProps = _objectWithoutProperties(_ref2, _excluded2);
+      if (!!nextProps && prevState.propsStr !== generateNewObj(attrProps)) {
+        var _ContentUtils$getSele = external_braft_utils_2_.ContentUtils.getSelectionEntityData(nextProps.editorState, 'LINK'),
           href = _ContentUtils$getSele.href,
           target = _ContentUtils$getSele.target;
-        var textSelected = !external_braft_utils_.ContentUtils.isSelectionCollapsed(this.props.editorState) && external_braft_utils_.ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic';
+        var textSelected = !external_braft_utils_2_.ContentUtils.isSelectionCollapsed(nextProps.editorState) && external_braft_utils_2_.ContentUtils.getSelectionBlockType(nextProps.editorState) !== 'atomic';
         var selectedText = '';
         if (textSelected) {
-          selectedText = external_braft_utils_.ContentUtils.getSelectionText(this.props.editorState);
+          selectedText = external_braft_utils_2_.ContentUtils.getSelectionText(nextProps.editorState);
         }
         return {
           textSelected: textSelected,
           text: selectedText,
           href: href || '',
           target: typeof target === 'undefined' ? nextProps.defaultLinkTarget || '' : target || '',
-          propsStr: JSON.stringify(nextProps)
+          propsStr: generateNewObj(attrProps)
         };
       }
+      return null;
     }
   }]);
   return LinkEditor;
@@ -5350,13 +5381,13 @@ var TextColor = /*#__PURE__*/function (_React$Component) {
           newColor = hookReturns;
         }
         if (_this.state.colorType === 'color') {
-          _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionColor(_this.props.editorState, newColor));
+          _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionColor(_this.props.editorState, newColor));
         } else {
-          _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionBackgroundColor(_this.props.editorState, newColor));
+          _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionBackgroundColor(_this.props.editorState, newColor));
         }
       }
       if (closePicker) {
-        _this.dropDownInstance.hide();
+        _this.dropDownInstance.current.hide();
         _this.props.editor.requestFocus();
       }
       return true;
@@ -5459,16 +5490,17 @@ var toggleFontSize = function toggleFontSize(event, props) {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-  props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
+  console.log(props.editorState);
+  props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.requestFocus();
   return true;
 };
-var FontSize = function FontSize(props) {
+function FontSize(props) {
   var caption = null;
   var currentFontSize = null;
   var dropDownInstance = null;
   props.fontSizes.find(function (item) {
-    if (external_braft_utils_.ContentUtils.selectionHasInlineStyle(props.editorState, "FONTSIZE-".concat(item))) {
+    if (external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(props.editorState, "FONTSIZE-".concat(item))) {
       caption = item;
       currentFontSize = item;
       return true;
@@ -5500,7 +5532,7 @@ var FontSize = function FontSize(props) {
       }
     }, item);
   })));
-};
+}
 FontSize.propTypes = {
   fontSizes: (prop_types_default()).any,
   editorState: (prop_types_default()).any,
@@ -5525,16 +5557,16 @@ var toggleLineHeight = function toggleLineHeight(event, props) {
   if (!isNaN(hookReturns)) {
     lineHeight = hookReturns;
   }
-  props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionLineHeight(props.editorState, lineHeight));
+  props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionLineHeight(props.editorState, lineHeight));
   props.editor.requestFocus();
   return true;
 };
-var LineHeight = function LineHeight(props) {
+function LineHeight(props) {
   var caption = null;
   var currentLineHeight = null;
   var dropDownInstance = /*#__PURE__*/external_react_default().createRef();
   props.lineHeights.find(function (item) {
-    if (external_braft_utils_.ContentUtils.selectionHasInlineStyle(props.editorState, "LINEHEIGHT-".concat(item))) {
+    if (external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(props.editorState, "LINEHEIGHT-".concat(item))) {
       caption = item;
       currentLineHeight = item;
       return true;
@@ -5558,11 +5590,11 @@ var LineHeight = function LineHeight(props) {
       "data-size": item,
       onClick: function onClick(event) {
         toggleLineHeight(event, props);
-        dropDownInstance.hide();
+        dropDownInstance.current.hide();
       }
     }, item);
   })));
-};
+}
 LineHeight.propTypes = {
   headings: (prop_types_default()).any,
   lineHeights: (prop_types_default()).any,
@@ -5590,16 +5622,16 @@ var toggleFontFamily = function toggleFontFamily(event, props) {
   if (typeof hookReturns === 'string') {
     fontFamilyName = hookReturns;
   }
-  props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionFontFamily(props.editorState, fontFamilyName));
+  props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionFontFamily(props.editorState, fontFamilyName));
   props.editor.requestFocus();
   return true;
 };
-var FontFamily = function FontFamily(props) {
+function FontFamily(props) {
   var caption = null;
   var currentIndex = null;
   var dropDownInstance = null;
   props.fontFamilies.find(function (item, index) {
-    if (external_braft_utils_.ContentUtils.selectionHasInlineStyle(props.editorState, "FONTFAMILY-".concat(item.name))) {
+    if (external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(props.editorState, "FONTFAMILY-".concat(item.name))) {
       caption = item.name;
       currentIndex = index;
       return true;
@@ -5636,7 +5668,7 @@ var FontFamily = function FontFamily(props) {
       }
     }, item.name));
   })));
-};
+}
 FontFamily.propTypes = {
   fontFamilies: (prop_types_default()).any,
   editorState: (prop_types_default()).any,
@@ -5681,7 +5713,7 @@ var TextAlign = /*#__PURE__*/function (_React$Component) {
       if (_this.props.textAligns.indexOf(hookReturns) > -1) {
         alignment = hookReturns;
       }
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionAlignment(_this.props.editorState, alignment));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionAlignment(_this.props.editorState, alignment));
       _this.props.editor.requestFocus();
     });
     return _this;
@@ -5708,7 +5740,7 @@ var TextAlign = /*#__PURE__*/function (_React$Component) {
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(next) {
       return {
-        currentAlignment: external_braft_utils_.ContentUtils.getSelectionBlockData(next.editorState, 'textAlign')
+        currentAlignment: external_braft_utils_2_.ContentUtils.getSelectionBlockData(next.editorState, 'textAlign')
       };
     }
   }]);
@@ -5738,11 +5770,11 @@ var insertEmoji = function insertEmoji(event, props) {
   if (typeof hookReturns === 'string') {
     emoji = hookReturns;
   }
-  props.editor.setValue(external_braft_utils_.ContentUtils.insertText(props.editorState, emoji));
+  props.editor.setValue(external_braft_utils_2_.ContentUtils.insertText(props.editorState, emoji));
   props.editor.requestFocus();
   return true;
 };
-var EmojiPicker = function EmojiPicker(props) {
+function EmojiPicker(props) {
   return /*#__PURE__*/external_react_default().createElement(common_DropDown, {
     caption: props.defaultCaption,
     autoHide: true,
@@ -5764,7 +5796,7 @@ var EmojiPicker = function EmojiPicker(props) {
       role: "presentation"
     }, item);
   }))));
-};
+}
 EmojiPicker.propTypes = {
   defaultCaption: (prop_types_default()).any,
   getContainerNode: (prop_types_default()).any,
@@ -5788,16 +5820,16 @@ var toggleLetterSpacing = function toggleLetterSpacing(event, props) {
   if (!isNaN(hookReturns)) {
     letterSpacing = hookReturns;
   }
-  props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionLetterSpacing(props.editorState, letterSpacing));
+  props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionLetterSpacing(props.editorState, letterSpacing));
   props.editor.requestFocus();
   return true;
 };
-var LetterSpacing = function LetterSpacing(props) {
+function LetterSpacing(props) {
   var caption = null;
   var currentLetterSpacing = null;
   var dropDownInstance = null;
   props.letterSpacings.find(function (item) {
-    if (external_braft_utils_.ContentUtils.selectionHasInlineStyle(props.editorState, "LETTERSPACING-".concat(item))) {
+    if (external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(props.editorState, "LETTERSPACING-".concat(item))) {
       caption = item;
       currentLetterSpacing = item;
       return true;
@@ -5829,7 +5861,7 @@ var LetterSpacing = function LetterSpacing(props) {
       }
     }, item);
   })));
-};
+}
 LetterSpacing.propTypes = {
   headings: (prop_types_default()).any,
   letterSpacings: (prop_types_default()).any,
@@ -5869,11 +5901,11 @@ var TextIndent = /*#__PURE__*/function (_React$Component) {
       currentIndent: 0
     });
     _defineProperty(_assertThisInitialized(_this), "increaseIndent", function () {
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.increaseSelectionIndent(_this.props.editorState));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.increaseSelectionIndent(_this.props.editorState));
       _this.props.editor.requestFocus();
     });
     _defineProperty(_assertThisInitialized(_this), "decreaseIndent", function () {
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.decreaseSelectionIndent(_this.props.editorState));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.decreaseSelectionIndent(_this.props.editorState));
       _this.props.editor.requestFocus();
     });
     return _this;
@@ -5907,7 +5939,7 @@ var TextIndent = /*#__PURE__*/function (_React$Component) {
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps) {
       return {
-        currentIndent: external_braft_utils_.ContentUtils.getSelectionBlockData(nextProps.editorState, 'textIndent') || 0
+        currentIndent: external_braft_utils_2_.ContentUtils.getSelectionBlockData(nextProps.editorState, 'textIndent') || 0
       };
     }
   }]);
@@ -6036,7 +6068,7 @@ var ControlBar = /*#__PURE__*/function (_React$Component) {
       };
     });
     _defineProperty(_assertThisInitialized(_this), "insertMedias", function (medias) {
-      _this.props.editor.setValue(external_braft_utils_.ContentUtils.insertMedias(_this.props.editorState, medias));
+      _this.props.editor.setValue(external_braft_utils_2_.ContentUtils.insertMedias(_this.props.editorState, medias));
       _this.props.editor.requestFocus();
       if (_this.props.media.onInsert) {
         _this.props.media.onInsert(medias);
@@ -6074,11 +6106,11 @@ var ControlBar = /*#__PURE__*/function (_React$Component) {
       var className = 'control-item button';
       var type = data.type,
         command = data.command;
-      if (type === 'inline-style' && external_braft_utils_.ContentUtils.selectionHasInlineStyle(this.props.editorState, command)) {
+      if (type === 'inline-style' && external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(this.props.editorState, command)) {
         className += ' active';
-      } else if (type === 'block-type' && external_braft_utils_.ContentUtils.getSelectionBlockType(this.props.editorState) === command) {
+      } else if (type === 'block-type' && external_braft_utils_2_.ContentUtils.getSelectionBlockType(this.props.editorState) === command) {
         className += ' active';
-      } else if (type === 'entity' && external_braft_utils_.ContentUtils.getSelectionEntityType(this.props.editorState) === command) {
+      } else if (type === 'entity' && external_braft_utils_2_.ContentUtils.getSelectionEntityType(this.props.editorState) === command) {
         className += ' active';
       }
       return className;
@@ -6098,16 +6130,16 @@ var ControlBar = /*#__PURE__*/function (_React$Component) {
       }
       if (type === 'inline-style') {
         var exclusiveInlineStyle = exclusiveInlineStyles[hookCommand];
-        if (exclusiveInlineStyle && external_braft_utils_.ContentUtils.selectionHasInlineStyle(editorState, exclusiveInlineStyle)) {
-          editorState = external_braft_utils_.ContentUtils.toggleSelectionInlineStyle(editorState, exclusiveInlineStyle);
+        if (exclusiveInlineStyle && external_braft_utils_2_.ContentUtils.selectionHasInlineStyle(editorState, exclusiveInlineStyle)) {
+          editorState = external_braft_utils_2_.ContentUtils.toggleSelectionInlineStyle(editorState, exclusiveInlineStyle);
         }
-        this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionInlineStyle(editorState, hookCommand));
+        this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionInlineStyle(editorState, hookCommand));
       }
       if (type === 'block-type') {
-        this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionBlockType(editorState, hookCommand));
+        this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionBlockType(editorState, hookCommand));
       }
       if (type === 'entity') {
-        this.props.editor.setValue(external_braft_utils_.ContentUtils.toggleSelectionEntity(editorState, {
+        this.props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionEntity(editorState, {
           type: hookCommand,
           mutability: data.mutability || 'MUTABLE',
           data: data.data || {}
@@ -6158,7 +6190,7 @@ var ControlBar = /*#__PURE__*/function (_React$Component) {
         style = _this$props.style,
         textAligns = _this$props.textAligns,
         textBackgroundColor = _this$props.textBackgroundColor;
-      var currentBlockType = external_braft_utils_.ContentUtils.getSelectionBlockType(editorState);
+      var currentBlockType = external_braft_utils_2_.ContentUtils.getSelectionBlockType(editorState);
       var commonProps = {
         editor: editor,
         editorId: editorId,
@@ -6423,7 +6455,7 @@ ControlBar.propTypes = {
 
 
 
-var _excluded = ["value", "defaultValue", "onChange"];
+var editor_excluded = ["value", "defaultValue", "onChange"];
 function editor_createSuper(Derived) { var hasNativeReflectConstruct = editor_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 function editor_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function editor_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -6494,6 +6526,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
         });
       }
       if (!newEditorState.convertOptions) {
+        console.log(newEditorState);
         newEditorState.setConvertOptions(getConvertOptions(_this.editorProps));
       }
       _this.setState({
@@ -6580,20 +6613,20 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       return compositionStartHandler(event, _assertThisInitialized(_this));
     });
     _defineProperty(_assertThisInitialized(_this), "undo", function () {
-      _this.setValue(external_braft_utils_.ContentUtils.undo(_this.state.editorState));
+      _this.setValue(external_braft_utils_2_.ContentUtils.undo(_this.state.editorState));
     });
     _defineProperty(_assertThisInitialized(_this), "redo", function () {
-      _this.setValue(external_braft_utils_.ContentUtils.redo(_this.state.editorState));
+      _this.setValue(external_braft_utils_2_.ContentUtils.redo(_this.state.editorState));
     });
     _defineProperty(_assertThisInitialized(_this), "removeSelectionInlineStyles", function () {
-      _this.setValue(external_braft_utils_.ContentUtils.removeSelectionInlineStyles(_this.state.editorState));
+      _this.setValue(external_braft_utils_2_.ContentUtils.removeSelectionInlineStyles(_this.state.editorState));
     });
     _defineProperty(_assertThisInitialized(_this), "insertHorizontalLine", function () {
-      _this.setValue(external_braft_utils_.ContentUtils.insertHorizontalLine(_this.state.editorState));
+      _this.setValue(external_braft_utils_2_.ContentUtils.insertHorizontalLine(_this.state.editorState));
     });
     _defineProperty(_assertThisInitialized(_this), "clearEditorContent", function () {
-      _this.setValue(external_braft_utils_.ContentUtils.clear(_this.state.editorState), function (editorState) {
-        _this.setValue(external_braft_utils_.ContentUtils.toggleSelectionIndent(editorState, 0));
+      _this.setValue(external_braft_utils_2_.ContentUtils.clear(_this.state.editorState), function (editorState) {
+        _this.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionIndent(editorState, 0));
       });
     });
     _defineProperty(_assertThisInitialized(_this), "toggleFullscreen", function (fullscreen) {
@@ -6620,19 +6653,22 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
     var defaultEditorState = (_this.props.defaultValue || _this.props.value) instanceof external_draft_js_.EditorState ? _this.props.defaultValue || _this.props.value : external_draft_js_.EditorState.createEmpty(_this.editorDecorators);
     defaultEditorState.setConvertOptions(getConvertOptions(_this.editorProps));
     var tempColors = [];
-    if (external_braft_utils_.ContentUtils.isEditorState(defaultEditorState)) {
-      var colors = external_braft_utils_.ColorUtils.detectColorsFromDraftState(defaultEditorState.toRAW(true));
+    if (external_braft_utils_2_.ContentUtils.isEditorState(defaultEditorState)) {
+      var colors = external_braft_utils_2_.ColorUtils.detectColorsFromDraftState(defaultEditorState.toRAW(true));
       defaultEditorState.setConvertOptions(getConvertOptions(_this.editorProps));
       tempColors = filterColors(colors, _this.editorProps.colors);
     }
     _this.state = {
       tempColors: tempColors,
       editorState: defaultEditorState,
-      isFullscreen: false
+      isFullscreen: false,
+      propsStr: JSON.stringify(props)
     };
     _this.containerNode = null;
     return _this;
   }
+
+  // eslint-disable-next-line react/sort-comp
   _createClass(BraftEditor, [{
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -6644,7 +6680,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
           uploadFn = _defaultProps$media$m.uploadFn,
           validateFn = _defaultProps$media$m.validateFn,
           items = _defaultProps$media$m.items;
-        this.braftFinder = new (external_braft_finder_default())({
+        this.braftFinder = new (external_braft_finder_2_default())({
           items: items,
           language: language,
           uploader: uploadFn,
@@ -6653,6 +6689,25 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
         this.forceUpdate();
       }
       this.isLiving = true;
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.exec) {
+        this.updateExec(this.props);
+      }
+      if (prevState.editorState !== this.state.editorState) {
+        this.state.editorState.setConvertOptions(getConvertOptions(this.editorProps));
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var _this$controlBarInsta;
+      this.isLiving = false;
+      if ((_this$controlBarInsta = this.controlBarInstance) !== null && _this$controlBarInsta !== void 0 && _this$controlBarInsta.current) {
+        this.controlBarInstance.current.closeBraftFinder();
+      }
     }
   }, {
     key: "updateExec",
@@ -6669,7 +6724,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
           uploadFn = _defaultProps$media$m2.uploadFn,
           validateFn = _defaultProps$media$m2.validateFn,
           items = _defaultProps$media$m2.items;
-        this.braftFinder = new (external_braft_finder_default())({
+        this.braftFinder = new (external_braft_finder_2_default())({
           items: items,
           language: language,
           uploader: uploadFn,
@@ -6681,14 +6736,14 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
         this.braftFinder.setItems(media.items);
       }
       var nextEditorState;
-      if (!this.valueInitialized && typeof this.props.defaultValue === 'undefined' && external_braft_utils_.ContentUtils.isEditorState(props.defaultValue)) {
+      if (!this.valueInitialized && typeof this.props.defaultValue === 'undefined' && external_braft_utils_2_.ContentUtils.isEditorState(props.defaultValue)) {
         nextEditorState = props.defaultValue;
-      } else if (external_braft_utils_.ContentUtils.isEditorState(editorState)) {
+      } else if (external_braft_utils_2_.ContentUtils.isEditorState(editorState)) {
         nextEditorState = editorState;
       }
       if (nextEditorState) {
         if (nextEditorState && nextEditorState !== this.state.editorState) {
-          var tempColors = external_braft_utils_.ColorUtils.detectColorsFromDraftState(nextEditorState.toRAW(true));
+          var tempColors = external_braft_utils_2_.ColorUtils.detectColorsFromDraftState(nextEditorState.toRAW(true));
           nextEditorState.setConvertOptions(getConvertOptions(this.editorProps));
           this.setState(function (prevState) {
             return {
@@ -6714,24 +6769,6 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.exec) {
-        this.updateExec(this.props);
-      }
-      if (prevState.editorState !== this.state.editorState) {
-        this.state.editorState.setConvertOptions(getConvertOptions(this.editorProps));
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.isLiving = false;
-      if (this.controlBarInstance) {
-        this.controlBarInstance.closeBraftFinder();
-      }
-    }
-  }, {
     key: "getEditorProps",
     value: function getEditorProps() {
       var _this3 = this;
@@ -6739,7 +6776,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       var value = props.value,
         defaultValue = props.defaultValue,
         onChange = props.onChange,
-        restProps = _objectWithoutProperties(props, _excluded); // eslint-disable-line no-unused-vars
+        restProps = _objectWithoutProperties(props, editor_excluded); // eslint-disable-line no-unused-vars
       var propInterceptors = getPropInterceptors(restProps.editorId || restProps.id);
       if (propInterceptors.length === 0) {
         return restProps;
@@ -6955,10 +6992,10 @@ external_draft_js_.EditorState.prototype.setConvertOptions = function setConvert
 external_draft_js_.EditorState.prototype.toHTML = function toHTML() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var convertOptions = this.convertOptions || {};
-  return (0,external_braft_convert_.convertEditorStateToHTML)(this, index_objectSpread(index_objectSpread({}, convertOptions), options));
+  return (0,external_braft_convert_2_.convertEditorStateToHTML)(this, index_objectSpread(index_objectSpread({}, convertOptions), options));
 };
 external_draft_js_.EditorState.prototype.toRAW = function toRAW(noStringify) {
-  return noStringify ? (0,external_braft_convert_.convertEditorStateToRaw)(this) : JSON.stringify((0,external_braft_convert_.convertEditorStateToRaw)(this));
+  return noStringify ? (0,external_braft_convert_2_.convertEditorStateToRaw)(this) : JSON.stringify((0,external_braft_convert_2_.convertEditorStateToRaw)(this));
 };
 external_draft_js_.EditorState.prototype.toText = function toText() {
   return this.getCurrentContent().getPlainText();
@@ -6978,21 +7015,21 @@ external_draft_js_.EditorState.createFrom = function (content) {
     editorState = content;
   }
   if (_typeof(content) === 'object' && content && content.blocks && content.entityMap) {
-    editorState = (0,external_braft_convert_.convertRawToEditorState)(content, getDecorators(customOptions.editorId));
+    editorState = (0,external_braft_convert_2_.convertRawToEditorState)(content, getDecorators(customOptions.editorId));
   }
   if (typeof content === 'string') {
     try {
       if (/^(-)?\d+$/.test(content)) {
-        editorState = (0,external_braft_convert_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
+        editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
       } else {
         editorState = external_draft_js_.EditorState.createFrom(JSON.parse(content), customOptions);
       }
     } catch (error) {
-      editorState = (0,external_braft_convert_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
+      editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
     }
   }
   if (typeof content === 'number') {
-    editorState = (0,external_braft_convert_.convertHTMLToEditorState)(content.toLocaleString().replace(/,/g, ''), getDecorators(customOptions.editorId), customOptions, 'create');
+    editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content.toLocaleString().replace(/,/g, ''), getDecorators(customOptions.editorId), customOptions, 'create');
   } else {
     editorState = external_draft_js_.EditorState.createEmpty(getDecorators(customOptions.editorId));
   }

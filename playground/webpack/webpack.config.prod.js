@@ -2,12 +2,12 @@ const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
-const baseConfigs = require('./webpack.base');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const baseConfigs = require('./webpack.base');
 
 module.exports = merge(baseConfigs, {
   mode: 'production',
-  //devtool: 'none',
+  // devtool: 'none',
   context: path.join(__dirname, '../../src'),
   entry: {
     index: './index.jsx',
@@ -24,9 +24,9 @@ module.exports = merge(baseConfigs, {
     'draft-js': 'draft-js',
     'draft-convert': 'draft-convert',
     'draftjs-utils': 'draftjs-utils',
-    'braft-finder': 'braft-finder',
-    'braft-utils': 'braft-utils',
-    'braft-convert': 'braft-convert',
+    'braft-finder-2': 'braft-finder-2',
+    'braft-utils-2': 'braft-utils-2',
+    'braft-convert-2': 'braft-convert-2',
     immutable: 'immutable',
   },
   optimization: {
@@ -49,6 +49,6 @@ module.exports = merge(baseConfigs, {
     new ESLintPlugin(),
     new MiniCssExtractPlugin({
       filename: 'index.css',
-    })
+    }),
   ],
 });

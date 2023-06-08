@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import PlayerModal from 'components/business/PlayerModal';
 
 import './style.scss';
 
-const Video = ({ mediaData, language, editor, editorState, block }) => {
+function Video({ mediaData, language, editor, editorState, block }) {
   const { url, name, meta } = mediaData;
   const { poster = '' } = meta;
 
@@ -34,7 +34,7 @@ const Video = ({ mediaData, language, editor, editorState, block }) => {
       </PlayerModal>
     </div>
   );
-};
+}
 
 Video.propTypes = {
   mediaData: PropTypes.any,

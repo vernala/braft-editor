@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import { imageControlItems } from 'configs/controls';
 import Switch from 'components/common/Switch';
@@ -79,7 +79,7 @@ class Image extends React.Component {
 
   repareChangeSize = (type) => (e) => {
     this.reSizeType = type;
-    const imageRect = this.imageElement.getBoundingClientRect();
+    const imageRect = this.imageElement.current.getBoundingClientRect();
     this.initialTop = 0;
     this.initialLeft = 0;
     this.initialWidth = imageRect.width;
@@ -109,8 +109,8 @@ class Image extends React.Component {
     const viewRect = container
       .querySelector('.bf-content')
       .getBoundingClientRect();
-    const toolbarRect = this.toolbarElement.getBoundingClientRect();
-    const imageRect = this.imageElement.getBoundingClientRect();
+    const toolbarRect = this.toolbarElement.current.getBoundingClientRect();
+    const imageRect = this.imageElement.current.getBoundingClientRect();
 
     const right =
       viewRect.right -

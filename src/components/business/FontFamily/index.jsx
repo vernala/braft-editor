@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 
@@ -29,7 +29,7 @@ const toggleFontFamily = (event, props) => {
   return true;
 };
 
-const FontFamily = (props) => {
+function FontFamily(props) {
   let caption = null;
   let currentIndex = null;
   let dropDownInstance = null;
@@ -60,26 +60,24 @@ const FontFamily = (props) => {
       className="control-item dropdown font-family-dropdown"
     >
       <ul className="menu">
-        {props.fontFamilies.map((item, index) => {
-          return (
-            <li
-              key={uuidv4()}
-              role="presentation"
-              className={`menu-item ${index === currentIndex ? 'active' : ''}`}
-              data-name={item.name}
-              onClick={(event) => {
-                toggleFontFamily(event, props);
-                dropDownInstance.hide();
-              }}
-            >
-              <span style={{ fontFamily: item.family }}>{item.name}</span>
-            </li>
-          );
-        })}
+        {props.fontFamilies.map((item, index) => (
+          <li
+            key={uuidv4()}
+            role="presentation"
+            className={`menu-item ${index === currentIndex ? 'active' : ''}`}
+            data-name={item.name}
+            onClick={(event) => {
+              toggleFontFamily(event, props);
+              dropDownInstance.hide();
+            }}
+          >
+            <span style={{ fontFamily: item.family }}>{item.name}</span>
+          </li>
+        ))}
       </ul>
     </DropDown>
   );
-};
+}
 
 FontFamily.propTypes = {
   fontFamilies: PropTypes.any,

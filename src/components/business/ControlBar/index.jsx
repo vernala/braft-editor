@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import getEditorControls from 'configs/controls';
 import LinkEditor from 'components/business/LinkEditor';
@@ -47,27 +47,17 @@ const mergeControls = (
   }
 
   return builtControls
-    .map((item) => {
-      return (
-        customExtendControls.find((subItem) => {
-          return subItem.replace === (item.key || item);
-        }) ||
-        extensionControls.find((subItem) => {
-          return subItem.replace === (item.key || item);
-        }) ||
+    .map((item) => (
+      customExtendControls.find((subItem) => subItem.replace === (item.key || item)) ||
+        extensionControls.find((subItem) => subItem.replace === (item.key || item)) ||
         item
-      );
-    })
+    ))
     .concat(extensionControls.length ? 'separator' : '')
     .concat(
-      extensionControls.filter((item) => {
-        return !item.replace;
-      }),
+      extensionControls.filter((item) => !item.replace),
     )
     .concat(
-      customExtendControls.filter((item) => {
-        return typeof item === 'string' || !item.replace;
-      }),
+      customExtendControls.filter((item) => typeof item === 'string' || !item.replace),
     );
 };
 
@@ -204,9 +194,7 @@ export default class ControlBar extends React.Component {
     return true;
   };
 
-  bindBraftFinderHook = (hookName) => (...params) => {
-    return this.props.hooks(hookName, params[0])(...params);
-  };
+  bindBraftFinderHook = (hookName) => (...params) => this.props.hooks(hookName, params[0])(...params);
 
   insertMedias = (medias) => {
     this.props.editor.setValue(
@@ -307,9 +295,7 @@ export default class ControlBar extends React.Component {
           if (itemKey.toLowerCase() === 'separator') {
             return <span key={uuidv4()} className="separator-line" />;
           }
-          let controlItem = editorControls.find((subItem) => {
-            return subItem.key.toLowerCase() === itemKey.toLowerCase();
-          });
+          let controlItem = editorControls.find((subItem) => subItem.key.toLowerCase() === itemKey.toLowerCase());
           if (typeof item !== 'string') {
             controlItem = { ...controlItem, ...item };
           }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BraftFinder from 'braft-finder';
-import { ColorUtils, ContentUtils } from 'braft-utils';
+import BraftFinder from 'braft-finder-2';
+import { ColorUtils, ContentUtils } from 'braft-utils-2';
 import { Editor, EditorState } from 'draft-js';
 import { Map } from 'immutable';
 import mergeClassNames from '@inner-desktop/mergeclassnames';
@@ -42,27 +42,23 @@ import ControlBar from 'components/business/ControlBar';
 import 'draft-js/dist/Draft.css';
 import 'assets/scss/_base.scss';
 
-const buildHooks = (hooks) => (hookName, defaultReturns = {}) => {
-  return hooks[hookName] || (() => defaultReturns);
-};
+const buildHooks =
+  (hooks) =>
+    (hookName, defaultReturns = {}) =>
+      hooks[hookName] || (() => defaultReturns);
 
-const filterColors = (colors, colors2) => {
-  return colors
-    .filter((item) => {
-      return !colors2.find(
-        (color) => color.toLowerCase() === item.toLowerCase(),
-      );
-    })
+const filterColors = (colors, colors2) =>
+  colors
+    .filter(
+      (item) =>
+        !colors2.find((color) => color.toLowerCase() === item.toLowerCase()),
+    )
     .filter((item, index, array) => array.indexOf(item) === index);
-};
 
-const isControlEnabled = (props, controlName) => {
-  return (
-    [...props.controls, ...props.extendControls].find(
-      (item) => item === controlName || item.key === controlName,
-    ) && props.excludeControls.indexOf(controlName) === -1
-  );
-};
+const isControlEnabled = (props, controlName) =>
+  [...props.controls, ...props.extendControls].find(
+    (item) => item === controlName || item.key === controlName,
+  ) && props.excludeControls.indexOf(controlName) === -1;
 
 const getConvertOptions = (props) => {
   const editorId = props.editorId || props.id;
@@ -102,6 +98,7 @@ const getConvertOptions = (props) => {
 
 class BraftEditor extends React.Component {
   constructor(props) {
+    const { defaultValue, value, onChange, ...otherProps } = props || {};
     super(props);
 
     this.editorProps = this.getEditorProps(props);
@@ -112,11 +109,11 @@ class BraftEditor extends React.Component {
     this.isFocused = false;
     this.isLiving = false;
     this.braftFinder = null;
-    this.valueInitialized = !!(this.props.defaultValue || this.props.value);
+    this.valueInitialized = !!(defaultValue || value);
 
     const defaultEditorState =
-      (this.props.defaultValue || this.props.value) instanceof EditorState
-        ? this.props.defaultValue || this.props.value
+      (props.defaultValue || props.value) instanceof EditorState
+        ? props.defaultValue || props.value
         : EditorState.createEmpty(this.editorDecorators);
     defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps));
 
@@ -135,10 +132,15 @@ class BraftEditor extends React.Component {
       tempColors,
       editorState: defaultEditorState,
       isFullscreen: false,
+      propsStr: JSON.stringify({
+        ...otherProps,
+        value: value?.toHTML(),
+      }),
     };
     this.containerNode = null;
   }
 
+  // eslint-disable-next-line react/sort-comp
   componentDidMount() {
     if (isControlEnabled(this.editorProps, 'media')) {
       const { language, media } = this.editorProps;
@@ -159,14 +161,36 @@ class BraftEditor extends React.Component {
     this.isLiving = true;
   }
 
-
-  static getDerivedStateFromProps(nextProps,prevState){
-    if(JSON.stringify(nextProps) !== prevState.propsStr){
-      return {exec:true,propsStr: JSON.stringify(nextProps)}
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { defaultValue, value, onChange, ...otherProps } = nextProps || {};
+    const str = JSON.stringify({
+      ...otherProps,
+      value: value?.toHTML(),
+    });
+    if (str !== prevState.propsStr) {
+      return { exec: true, propsStr: str };
     }
-    return null
+    return null;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.exec) {
+      this.updateExec(this.props);
+    }
+
+    if (prevState.editorState !== this.state.editorState) {
+      this.state.editorState.setConvertOptions(
+        getConvertOptions(this.editorProps),
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    this.isLiving = false;
+    if (this.controlBarInstance?.current) {
+      this.controlBarInstance.current.closeBraftFinder();
+    }
+  }
 
   updateExec(props) {
     this.editorProps = this.getEditorProps(props);
@@ -225,7 +249,7 @@ class BraftEditor extends React.Component {
               currentProps.colors,
             ),
             editorState: nextEditorState,
-            exec: false
+            exec: false,
           }),
           () => {
             if (this.props.onChange) {
@@ -236,30 +260,11 @@ class BraftEditor extends React.Component {
       } else {
         this.setState({
           editorState: nextEditorState,
-          exec: false
+          exec: false,
         });
       }
-    }else{
-      this.setState({exec: false})
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if(this.state.exec){
-      this.updateExec(this.props)
-    }
-
-    if (prevState.editorState !== this.state.editorState) {
-      this.state.editorState.setConvertOptions(
-        getConvertOptions(this.editorProps),
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    this.isLiving = false;
-    if (this.controlBarInstance) {
-      this.controlBarInstance.closeBraftFinder();
+    } else {
+      this.setState({ exec: false });
     }
   }
 
@@ -283,7 +288,8 @@ class BraftEditor extends React.Component {
   }
 
   onChange = (editorState, callback) => {
-    let newEditorState = { ...editorState };
+    const oriProto = Object.getPrototypeOf(editorState);
+    let newEditorState = Object.assign(Object.create(oriProto), editorState);
     if (!(editorState instanceof EditorState)) {
       newEditorState = EditorState.set(editorState, {
         decorator: this.editorDecorators,
@@ -304,21 +310,13 @@ class BraftEditor extends React.Component {
     });
   };
 
-  getDraftInstance = () => {
-    return this.draftInstance;
-  };
+  getDraftInstance = () => this.draftInstance;
 
-  getFinderInstance = () => {
-    return this.braftFinder;
-  };
+  getFinderInstance = () => this.braftFinder;
 
-  getValue = () => {
-    return this.state.editorState;
-  };
+  getValue = () => this.state.editorState;
 
-  setValue = (editorState, callback) => {
-    return this.onChange(editorState, callback);
-  };
+  setValue = (editorState, callback) => this.onChange(editorState, callback);
 
   forceRender = () => {
     const selectionState = this.state.editorState.getSelection();
@@ -435,14 +433,8 @@ class BraftEditor extends React.Component {
   };
 
   render() {
-    let {
-      editorId,
-      controls,
-      media,
-      language,
-      hooks,
-      placeholder,
-    } = this.editorProps;
+    let { editorId, controls, media, language, hooks, placeholder } =
+      this.editorProps;
     const {
       id,
       excludeControls,
@@ -586,13 +578,12 @@ class BraftEditor extends React.Component {
       placeholder &&
       fixPlaceholder &&
       editorState.isEmpty() &&
-      editorState
-        .getCurrentContent()
-        .getFirstBlock()
-        .getType() !== 'unstyled'
+      editorState.getCurrentContent().getFirstBlock().getType() !== 'unstyled'
     ) {
       placeholder = '';
     }
+
+    console.log(editorState);
 
     const draftProps = {
       ref: (instance) => {

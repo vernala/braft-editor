@@ -2,13 +2,29 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import Switch from 'components/common/Switch';
 import DropDown from 'components/common/DropDown';
 import ControlGroup from 'components/business/ControlGroup';
 
 import './style.scss';
+
+const generateNewObj = (props) => {
+  let cache = [];
+  const json_str = JSON.stringify(props, (key, value) => {
+    if (typeof value === 'object' && value !== null) {
+      if (cache.indexOf(value) !== -1) {
+        return;
+      }
+      cache.push(value);
+    }
+    return value;
+  });
+  cache = null;
+
+  return json_str;
+};
 
 class LinkEditor extends React.Component {
   constructor(props) {
@@ -19,36 +35,58 @@ class LinkEditor extends React.Component {
       href: '',
       target: props.defaultLinkTarget || '',
       textSelected: false,
+      propsObj: {
+        text: '',
+        href: '',
+        target: props.defaultLinkTarget || '',
+        textSelected: false,
+      },
     };
   }
 
-  static getDerivedStateFromProps(nextProps,prevState){
-    if(!prevState.propsStr || prevState.propsStr != JSON.stringify(nextProps)){
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps) {
       const { href, target } = ContentUtils.getSelectionEntityData(
         nextProps.editorState,
         'LINK',
       );
+      const newTarget =
+        typeof target === 'undefined'
+          ? nextProps.defaultLinkTarget || ''
+          : target || '';
       const textSelected =
-        !ContentUtils.isSelectionCollapsed(this.props.editorState) &&
-        ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic';
+        !ContentUtils.isSelectionCollapsed(nextProps.editorState) &&
+        ContentUtils.getSelectionBlockType(nextProps.editorState) !== 'atomic';
 
       let selectedText = '';
 
       if (textSelected) {
-        selectedText = ContentUtils.getSelectionText(this.props.editorState);
+        selectedText = ContentUtils.getSelectionText(nextProps.editorState);
       }
 
-      return {
-        textSelected,
-        text: selectedText,
-        href: href || '',
-        target:
-          typeof target === 'undefined'
-            ? nextProps.defaultLinkTarget || ''
-            : target || '',
-        propsStr:JSON.stringify(nextProps),
+      if (
+        prevState.propsObj.textSelected !== textSelected ||
+        prevState.propsObj.text !== selectedText ||
+        prevState.propsObj.href !== href ||
+        '' ||
+        prevState.propsObj.target !== newTarget
+      ) {
+        return {
+          textSelected,
+          text: selectedText,
+          href: href || '',
+          target: newTarget,
+          propsObj: {
+            textSelected,
+            text: selectedText,
+            href: href || '',
+            target: newTarget,
+          },
+        };
       }
     }
+
+    return null;
   }
 
   dropDownInstance = React.createRef();
@@ -81,11 +119,11 @@ class LinkEditor extends React.Component {
   };
 
   handleCancel = () => {
-    this.dropDownInstance.hide();
+    this.dropDownInstance.current.hide();
   };
 
   handleUnlink = () => {
-    this.dropDownInstance.hide();
+    this.dropDownInstance.current.hide();
     this.props.editor.setValue(
       ContentUtils.toggleSelectionLink(this.props.editorState, false),
     );
@@ -99,7 +137,7 @@ class LinkEditor extends React.Component {
       target,
     });
 
-    this.dropDownInstance.hide();
+    this.dropDownInstance.current.hide();
     this.props.editor.requestFocus();
 
     if (hookReturns === false) {

@@ -14,6 +14,7 @@ class DropDown extends React.Component {
     offset: 0,
   };
 
+  // eslint-disable-next-line react/sort-comp
   componentDidMount() {
     if (document) {
       document.body.addEventListener('click', this.registerClickEvent);
@@ -25,14 +26,14 @@ class DropDown extends React.Component {
 
 
   static getDerivedStateFromProps(nextProps,prevState){
-    if(!prevState.disabled && nextProps.disabled){
+    if(!prevState.disabled && nextProps?.disabled){
       return {active:false,disabled:true}
     }
     return null
   }
 
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (!prevState.active && this.state.active) {
       this.fixDropDownPosition();
     }
@@ -53,8 +54,8 @@ class DropDown extends React.Component {
 
   fixDropDownPosition = () => {
     const viewRect = this.props.getContainerNode().getBoundingClientRect();
-    const handlerRect = this.dropDownHandlerElement.getBoundingClientRect();
-    const contentRect = this.dropDownContentElement.getBoundingClientRect();
+    const handlerRect = this.dropDownHandlerElement.current.getBoundingClientRect();
+    const contentRect = this.dropDownContentElement.current.getBoundingClientRect();
 
     let offset = 0;
     let right =
@@ -80,8 +81,8 @@ class DropDown extends React.Component {
     const { active } = this.state;
 
     if (
-      this.dropDownContentElement.contains(event.target) ||
-      this.dropDownHandlerElement.contains(event.target)
+      this.dropDownContentElement.current.contains(event.target) ||
+      this.dropDownHandlerElement.current.contains(event.target)
     ) {
       return false;
     }

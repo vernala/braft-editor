@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 
@@ -18,7 +18,7 @@ const toggleFontSize = (event, props) => {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-
+  console.log(props.editorState,fontSize,ContentUtils.toggleSelectionFontSize(props.editorState, fontSize))
   props.editor.setValue(
     ContentUtils.toggleSelectionFontSize(props.editorState, fontSize),
   );
@@ -26,7 +26,7 @@ const toggleFontSize = (event, props) => {
   return true;
 };
 
-const FontSize = (props) => {
+function FontSize(props) {
   let caption = null;
   let currentFontSize = null;
   let dropDownInstance = null;
@@ -56,26 +56,24 @@ const FontSize = (props) => {
       className="control-item dropdown bf-font-size-dropdown"
     >
       <ul className="bf-font-sizes">
-        {props.fontSizes.map((item) => {
-          return (
-            <li
-              key={uuidv4()}
-              role="presentation"
-              className={item === currentFontSize ? 'active' : null}
-              data-size={item}
-              onClick={(event) => {
-                toggleFontSize(event, props);
-                dropDownInstance.hide();
-              }}
-            >
-              {item}
-            </li>
-          );
-        })}
+        {props.fontSizes.map((item) => (
+          <li
+            key={uuidv4()}
+            role="presentation"
+            className={item === currentFontSize ? 'active' : null}
+            data-size={item}
+            onClick={(event) => {
+              toggleFontSize(event, props);
+              dropDownInstance.hide();
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     </DropDown>
   );
-};
+}
 
 FontSize.propTypes = {
   fontSizes: PropTypes.any,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { ContentUtils } from 'braft-utils';
+import { ContentUtils } from 'braft-utils-2';
 
 import DropDown from 'components/common/DropDown';
 
@@ -26,7 +26,7 @@ const toggleLineHeight = (event, props) => {
   return true;
 };
 
-const LineHeight = (props) => {
+function LineHeight(props) {
   let caption = null;
   let currentLineHeight = null;
   const dropDownInstance = React.createRef();
@@ -55,26 +55,24 @@ const LineHeight = (props) => {
       className="control-item dropdown bf-line-height-dropdown"
     >
       <ul className="bf-line-heights">
-        {props.lineHeights.map((item) => {
-          return (
-            <li
-              key={uuidv4()}
-              role="presentation"
-              className={item === currentLineHeight ? 'active' : null}
-              data-size={item}
-              onClick={(event) => {
-                toggleLineHeight(event, props);
-                dropDownInstance.hide();
-              }}
-            >
-              {item}
-            </li>
-          );
-        })}
+        {props.lineHeights.map((item) => (
+          <li
+            key={uuidv4()}
+            role="presentation"
+            className={item === currentLineHeight ? 'active' : null}
+            data-size={item}
+            onClick={(event) => {
+              toggleLineHeight(event, props);
+              dropDownInstance.current.hide();
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     </DropDown>
   );
-};
+}
 
 LineHeight.propTypes = {
   headings: PropTypes.any,
