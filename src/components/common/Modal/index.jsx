@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { BaseUtils } from 'braft-utils';
-import mergeClassNames from '@maximusft/mergeclassnames';
+import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import './style.scss';
 
@@ -60,11 +60,32 @@ export const showModal = (props) => {
 };
 
 class Modal extends React.Component {
+
   constructor(props) {
     super(props);
     this.active = false;
+
+    this.state = {
+      visible: !!props.visible,
+      exec:false,
+    }
+
     // eslint-disable-next-line new-cap
     this.componentId = `BRAFT-MODAL-${BaseUtils.UniueIndex()}`;
+  }
+
+  componentDidUpdate(){
+    if(this.state.exec){
+
+      if(this.state.visible){
+        this.active = true;
+        this.renderComponent(next);
+      }else{
+        this.unrenderComponent();
+      }
+
+      this.setState({exec:true});
+    }
   }
 
   componentDidMount() {
@@ -74,15 +95,26 @@ class Modal extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(nextProps,prevState){
+    if(prevState.visible !== !!nextProps.visible){
+      return {
+        visible:!!nextProps.visible,
+        exec:true,
+      }
+    }
+
+    return null
+  }
+
   // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(next) {
+  /* UNSAFE_componentWillReceiveProps(next) {
     if (this.props.visible && !next.visible) {
       this.unrenderComponent();
     } else if (this.props.visible || next.visible) {
       this.active = true;
       this.renderComponent(next);
     }
-  }
+  } */
 
   handleTransitionEnd = () => {
     if (!this.rootElement || !this.rootElement.classList) {

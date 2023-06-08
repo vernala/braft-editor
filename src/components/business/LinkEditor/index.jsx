@@ -22,30 +22,33 @@ class LinkEditor extends React.Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { href, target } = ContentUtils.getSelectionEntityData(
-      nextProps.editorState,
-      'LINK',
-    );
-    const textSelected =
-      !ContentUtils.isSelectionCollapsed(this.props.editorState) &&
-      ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic';
+  static getDerivedStateFromProps(nextProps,prevState){
+    if(!prevState.propsStr || prevState.propsStr != JSON.stringify(nextProps)){
+      const { href, target } = ContentUtils.getSelectionEntityData(
+        nextProps.editorState,
+        'LINK',
+      );
+      const textSelected =
+        !ContentUtils.isSelectionCollapsed(this.props.editorState) &&
+        ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic';
 
-    let selectedText = '';
+      let selectedText = '';
 
-    if (textSelected) {
-      selectedText = ContentUtils.getSelectionText(this.props.editorState);
+      if (textSelected) {
+        selectedText = ContentUtils.getSelectionText(this.props.editorState);
+      }
+
+      return {
+        textSelected,
+        text: selectedText,
+        href: href || '',
+        target:
+          typeof target === 'undefined'
+            ? nextProps.defaultLinkTarget || ''
+            : target || '',
+        propsStr:JSON.stringify(nextProps),
+      }
     }
-
-    this.setState({
-      textSelected,
-      text: selectedText,
-      href: href || '',
-      target:
-        typeof target === 'undefined'
-          ? nextProps.defaultLinkTarget || ''
-          : target || '',
-    });
   }
 
   dropDownInstance = React.createRef();

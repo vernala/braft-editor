@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import mergeClassNames from '@maximusft/mergeclassnames';
+import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import ResponsiveHelper from 'helpers/responsive';
 
@@ -10,6 +10,7 @@ import './style.scss';
 class DropDown extends React.Component {
   state = {
     active: false,
+    disabled:false,
     offset: 0,
   };
 
@@ -22,12 +23,14 @@ class DropDown extends React.Component {
     }
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(next) {
-    if (!this.props.disabled && next.disabled) {
-      this.hide();
+
+  static getDerivedStateFromProps(nextProps,prevState){
+    if(!prevState.disabled && nextProps.disabled){
+      return {active:false,disabled:true}
     }
+    return null
   }
+
 
   componentDidUpdate(prevState) {
     if (!prevState.active && this.state.active) {

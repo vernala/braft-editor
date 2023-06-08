@@ -1,13 +1,13 @@
-const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CssProcessor = require('cssnano');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { merge } = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
 const baseConfigs = require('./webpack.base');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = merge(baseConfigs, {
   mode: 'production',
-  devtool: 'source-map',
+  //devtool: 'none',
   context: path.join(__dirname, '../../src'),
   entry: {
     index: './index.jsx',
@@ -31,20 +31,24 @@ module.exports = merge(baseConfigs, {
   },
   optimization: {
     minimize: false,
+    minimizer: [
+      new CssMinimizerPlugin({
+        test: /.css$/,
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('index.css'),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /.css$/,
-      cssProcessor: CssProcessor,
-      sourceMap: true,
-      cssProcessorOptions: {
-        discardComments: {
-          removeAll: true,
-        },
-        zindex: false,
-        safe: true,
-      },
-    }),
+    new ESLintPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+    })
   ],
 });

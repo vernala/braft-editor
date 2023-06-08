@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { ContentUtils } from 'braft-utils';
-import mergeClassNames from '@maximusft/mergeclassnames';
+import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import ControlGroup from 'components/business/ControlGroup';
 
@@ -12,14 +12,15 @@ class TextAlign extends React.Component {
     currentAlignment: undefined,
   };
 
-  UNSAFE_componentWillReceiveProps(next) {
-    this.setState({
+  static getDerivedStateFromProps(next){
+    return {
       currentAlignment: ContentUtils.getSelectionBlockData(
         next.editorState,
         'textAlign',
       ),
-    });
+    }
   }
+
 
   setAlignment = (event) => {
     let { alignment } = event.currentTarget.dataset;

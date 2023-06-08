@@ -1,13 +1,20 @@
 const path = require('path');
 const fs = require('fs');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          },
+          { loader: 'sass-loader', options: { sourceMap: true } },
+        ],
       },
       {
         test: /\.(js|jsx)$/,
@@ -20,8 +27,7 @@ module.exports = {
                 fs.readFileSync(path.resolve(__dirname, '../../.babelrc')),
               ),
             },
-          },
-          'eslint-loader',
+          }
         ],
       },
       {

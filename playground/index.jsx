@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 // import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon';
 
 // import BraftEditor from '../src_old';
-import BraftEditor from '../dist_old/index';
+import BraftEditor from '../dist/index';
 
 import 'braft-extensions/dist/emoticon.css';
 import 'braft-extensions/dist/color-picker.css';

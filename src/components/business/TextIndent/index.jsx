@@ -9,15 +9,14 @@ class TextIndent extends React.Component {
     currentIndent: 0,
   };
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({
+  static getDerivedStateFromProps(nextProps){
+    return {
       currentIndent:
         ContentUtils.getSelectionBlockData(
           nextProps.editorState,
           'textIndent',
         ) || 0,
-    });
+    }
   }
 
   increaseIndent = () => {

@@ -1,12 +1,13 @@
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const baseConfigs = require('./webpack.base');
 
 module.exports = merge(baseConfigs, {
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: {
     index: './playground/index.jsx',
   },
@@ -15,14 +16,19 @@ module.exports = merge(baseConfigs, {
     filename: '[name].js',
   },
   plugins: [
-    new ExtractTextPlugin('index.css'),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+    }),
     new HtmlWebpackPlugin({
       template: './playground/index.html',
     }),
+
+    new ESLintPlugin(),
   ],
   devServer: {
-    stats: { chunks: false },
-    contentBase: './playground',
+    static: {
+      directory: path.join(__dirname, './playground'),
+    },
     port: 5998,
     hot: true,
   },

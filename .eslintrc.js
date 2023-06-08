@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,7 +16,7 @@ module.exports = {
   globals: {
     _: false,
   },
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: ['airbnb', 'prettier'],
   plugins: ['prettier', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
     'arrow-parens': ['error', 'always'],

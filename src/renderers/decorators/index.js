@@ -1,6 +1,6 @@
 import { CompositeDecorator } from 'draft-js';
-import CombineDecorators from 'draft-js-multidecorators';
-import Immutable from 'immutable';
+import CombineDecorators from '@qnighy/draft-js-multidecorators';
+import { List } from 'immutable';
 
 import { getExtensionDecorators } from 'helpers/extension';
 import Link from './Link';
@@ -22,7 +22,7 @@ CombineDecorators.prototype.getDecorations = function getDecorations(
     });
   });
 
-  return Immutable.List(decorations);
+  return List(decorations);
 };
 
 const builtinDecorators = [

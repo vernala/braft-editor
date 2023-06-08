@@ -4,7 +4,7 @@ import BraftFinder from 'braft-finder';
 import { ColorUtils, ContentUtils } from 'braft-utils';
 import { Editor, EditorState } from 'draft-js';
 import { Map } from 'immutable';
-import mergeClassNames from '@maximusft/mergeclassnames';
+import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import languages from 'languages';
 import getKeyBindingFn from 'configs/keybindings';
@@ -139,8 +139,7 @@ class BraftEditor extends React.Component {
     this.containerNode = null;
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     if (isControlEnabled(this.editorProps, 'media')) {
       const { language, media } = this.editorProps;
       const { uploadFn, validateFn, items } = {
@@ -157,14 +156,19 @@ class BraftEditor extends React.Component {
 
       this.forceUpdate();
     }
-  }
-
-  componentDidMount() {
     this.isLiving = true;
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(props) {
+
+  static getDerivedStateFromProps(nextProps,prevState){
+    if(JSON.stringify(nextProps) !== prevState.propsStr){
+      return {exec:true,propsStr: JSON.stringify(nextProps)}
+    }
+    return null
+  }
+
+
+  updateExec(props) {
     this.editorProps = this.getEditorProps(props);
 
     const { value: editorState } = props;
@@ -221,6 +225,7 @@ class BraftEditor extends React.Component {
               currentProps.colors,
             ),
             editorState: nextEditorState,
+            exec: false
           }),
           () => {
             if (this.props.onChange) {
@@ -231,12 +236,19 @@ class BraftEditor extends React.Component {
       } else {
         this.setState({
           editorState: nextEditorState,
+          exec: false
         });
       }
+    }else{
+      this.setState({exec: false})
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if(this.state.exec){
+      this.updateExec(this.props)
+    }
+
     if (prevState.editorState !== this.state.editorState) {
       this.state.editorState.setConvertOptions(
         getConvertOptions(this.editorProps),

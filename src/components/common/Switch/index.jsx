@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import mergeClassNames from '@maximusft/mergeclassnames';
+import mergeClassNames from '@inner-desktop/mergeclassnames';
 
 import './style.scss';
 
-const Switch = (props) => {
+function Switch(props) {
   const { active, onClick, className } = props;
 
   return (
@@ -14,7 +14,7 @@ const Switch = (props) => {
       className={mergeClassNames('bf-switch', className, active && 'active')}
     />
   );
-};
+}
 
 Switch.defaultProps = {
   onClick: () => null,

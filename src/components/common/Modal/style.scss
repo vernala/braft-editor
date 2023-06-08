@@ -99,7 +99,7 @@
   background-color: $COLOR_ACTIVE;
   color: #fff;
   &:hover{
-    background-color: $COLOR_ACTIVE - 20;
+    background-color: $COLOR_ACTIVE_HOVER;
   }
   &.disabled{
     opacity: .3;
