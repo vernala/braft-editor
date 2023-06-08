@@ -1,6 +1,6 @@
 {
   "name": "braft-editor-new",
-  "version": "2.4.0",
+  "version": "2.4.2",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/index.js",
   "types": "index.d.ts",

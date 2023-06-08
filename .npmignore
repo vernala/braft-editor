@@ -8,6 +8,14 @@
 .eslintrc.js
 .babelrc
 .gitignore
+.vscode
+/.vscode
+.gitattributes
+.prettierignore
+.editorconfig
+.prettierrc
+jsconfig.json
 webpack.config.base.js
 webpack.config.js
 webpack.config.prod.js
+package-lock.json
