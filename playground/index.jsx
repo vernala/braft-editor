@@ -6,13 +6,15 @@ import ReactDOM from 'react-dom';
 // import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon';
 
 // import BraftEditor from '../src_old';
-// import BraftEditor from '../dist/index';
-import BraftEditor from '../src/index';
+import BraftEditor from '../dist/index';
+// import BraftEditor from '../src/index';
 
 import 'braft-extensions/dist/emoticon.css';
 import 'braft-extensions/dist/color-picker.css';
 import 'braft-extensions/dist/table.css';
 import 'braft-extensions/dist/code-highlighter.css';
+import '../dist/output.css';
+import '../dist/index.css';
 
 /*
 const emoticons = defaultEmoticons.map((item) =>

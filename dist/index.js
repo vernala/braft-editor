@@ -1110,23 +1110,23 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 ;// CONCATENATED MODULE: ../node_modules/@babel/runtime/helpers/esm/typeof.js
-function _typeof(obj) {
+function typeof_typeof(obj) {
   "@babel/helpers - typeof";
 
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+  return typeof_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
     return typeof obj;
   } : function (obj) {
     return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
+  }, typeof_typeof(obj);
 }
 ;// CONCATENATED MODULE: ../node_modules/@babel/runtime/helpers/esm/toPrimitive.js
 
 function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
+  if (typeof_typeof(input) !== "object" || input === null) return input;
   var prim = input[Symbol.toPrimitive];
   if (prim !== undefined) {
     var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+    if (typeof_typeof(res) !== "object") return res;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
   return (hint === "string" ? String : Number)(input);
@@ -1136,7 +1136,7 @@ function _toPrimitive(input, hint) {
 
 function _toPropertyKey(arg) {
   var key = _toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+  return typeof_typeof(key) === "symbol" ? key : String(key);
 }
 ;// CONCATENATED MODULE: ../node_modules/@babel/runtime/helpers/esm/defineProperty.js
 
@@ -1682,7 +1682,7 @@ function _inherits(subClass, superClass) {
 
 
 function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+  if (call && (typeof_typeof(call) === "object" || typeof call === "function")) {
     return call;
   } else if (call !== void 0) {
     throw new TypeError("Derived constructors may only return object or undefined");
@@ -4725,7 +4725,7 @@ var debouce = false;
     });
   }
 });
-if (!responsiveHelperInited && (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object') {
+if (!responsiveHelperInited && (typeof window === "undefined" ? "undefined" : typeof_typeof(window)) === 'object') {
   window.addEventListener('resize', function (event) {
     clearTimeout(debouce);
     debouce = setTimeout(function () {
@@ -4951,9 +4951,6 @@ ControlGroup.propTypes = {
 
 
 
-
-var _excluded = ["children"],
-  _excluded2 = ["children"];
 function LinkEditor_createSuper(Derived) { var hasNativeReflectConstruct = LinkEditor_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 function LinkEditor_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /* eslint-disable camelcase */
@@ -4985,10 +4982,6 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
   function LinkEditor(props) {
     var _this;
     _classCallCheck(this, LinkEditor);
-    var _ref = props || {},
-      children = _ref.children,
-      attrProps = _objectWithoutProperties(_ref, _excluded);
-    console.log(attrProps);
     _this = _super.call(this, props);
     _defineProperty(_assertThisInitialized(_this), "dropDownInstance", /*#__PURE__*/external_react_default().createRef());
     _defineProperty(_assertThisInitialized(_this), "handeKeyDown", function (e) {
@@ -5072,7 +5065,12 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
       href: '',
       target: props.defaultLinkTarget || '',
       textSelected: false,
-      propsStr: generateNewObj(attrProps)
+      propsObj: {
+        text: '',
+        href: '',
+        target: props.defaultLinkTarget || '',
+        textSelected: false
+      }
     };
     return _this;
   }
@@ -5153,25 +5151,30 @@ var LinkEditor = /*#__PURE__*/function (_React$Component) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
-      var _ref2 = nextProps || {},
-        children = _ref2.children,
-        attrProps = _objectWithoutProperties(_ref2, _excluded2);
-      if (!!nextProps && prevState.propsStr !== generateNewObj(attrProps)) {
+      if (nextProps) {
         var _ContentUtils$getSele = external_braft_utils_2_.ContentUtils.getSelectionEntityData(nextProps.editorState, 'LINK'),
           href = _ContentUtils$getSele.href,
           target = _ContentUtils$getSele.target;
+        var newTarget = typeof target === 'undefined' ? nextProps.defaultLinkTarget || '' : target || '';
         var textSelected = !external_braft_utils_2_.ContentUtils.isSelectionCollapsed(nextProps.editorState) && external_braft_utils_2_.ContentUtils.getSelectionBlockType(nextProps.editorState) !== 'atomic';
         var selectedText = '';
         if (textSelected) {
           selectedText = external_braft_utils_2_.ContentUtils.getSelectionText(nextProps.editorState);
         }
-        return {
-          textSelected: textSelected,
-          text: selectedText,
-          href: href || '',
-          target: typeof target === 'undefined' ? nextProps.defaultLinkTarget || '' : target || '',
-          propsStr: generateNewObj(attrProps)
-        };
+        if (prevState.propsObj.textSelected !== textSelected || prevState.propsObj.text !== selectedText || prevState.propsObj.href !== href || '' || prevState.propsObj.target !== newTarget) {
+          return {
+            textSelected: textSelected,
+            text: selectedText,
+            href: href || '',
+            target: newTarget,
+            propsObj: {
+              textSelected: textSelected,
+              text: selectedText,
+              href: href || '',
+              target: newTarget
+            }
+          };
+        }
       }
       return null;
     }
@@ -5490,7 +5493,7 @@ var toggleFontSize = function toggleFontSize(event, props) {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-  console.log(props.editorState);
+  console.log(props.editorState, fontSize, external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.requestFocus();
   return true;
@@ -6455,7 +6458,9 @@ ControlBar.propTypes = {
 
 
 
-var editor_excluded = ["value", "defaultValue", "onChange"];
+var _excluded = ["defaultValue", "value", "onChange"],
+  _excluded2 = ["value", "defaultValue", "onChange"],
+  _excluded3 = ["defaultValue", "value", "onChange"];
 function editor_createSuper(Derived) { var hasNativeReflectConstruct = editor_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 function editor_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function editor_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -6517,16 +6522,21 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
   function BraftEditor(props) {
     var _this;
     _classCallCheck(this, BraftEditor);
+    var _ref = props || {},
+      defaultValue = _ref.defaultValue,
+      value = _ref.value,
+      onChange = _ref.onChange,
+      otherProps = _objectWithoutProperties(_ref, _excluded);
     _this = _super.call(this, props);
     _defineProperty(_assertThisInitialized(_this), "onChange", function (editorState, callback) {
-      var newEditorState = editor_objectSpread({}, editorState);
+      var oriProto = Object.getPrototypeOf(editorState);
+      var newEditorState = Object.assign(Object.create(oriProto), editorState);
       if (!(editorState instanceof external_draft_js_.EditorState)) {
         newEditorState = external_draft_js_.EditorState.set(editorState, {
           decorator: _this.editorDecorators
         });
       }
       if (!newEditorState.convertOptions) {
-        console.log(newEditorState);
         newEditorState.setConvertOptions(getConvertOptions(_this.editorProps));
       }
       _this.setState({
@@ -6649,8 +6659,8 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
-    _this.valueInitialized = !!(_this.props.defaultValue || _this.props.value);
-    var defaultEditorState = (_this.props.defaultValue || _this.props.value) instanceof external_draft_js_.EditorState ? _this.props.defaultValue || _this.props.value : external_draft_js_.EditorState.createEmpty(_this.editorDecorators);
+    _this.valueInitialized = !!(defaultValue || value);
+    var defaultEditorState = (props.defaultValue || props.value) instanceof external_draft_js_.EditorState ? props.defaultValue || props.value : external_draft_js_.EditorState.createEmpty(_this.editorDecorators);
     defaultEditorState.setConvertOptions(getConvertOptions(_this.editorProps));
     var tempColors = [];
     if (external_braft_utils_2_.ContentUtils.isEditorState(defaultEditorState)) {
@@ -6662,7 +6672,9 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       tempColors: tempColors,
       editorState: defaultEditorState,
       isFullscreen: false,
-      propsStr: JSON.stringify(props)
+      propsStr: JSON.stringify(editor_objectSpread(editor_objectSpread({}, otherProps), {}, {
+        value: value === null || value === void 0 ? void 0 : value.toHTML()
+      }))
     };
     _this.containerNode = null;
     return _this;
@@ -6776,7 +6788,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       var value = props.value,
         defaultValue = props.defaultValue,
         onChange = props.onChange,
-        restProps = _objectWithoutProperties(props, editor_excluded); // eslint-disable-line no-unused-vars
+        restProps = _objectWithoutProperties(props, _excluded2); // eslint-disable-line no-unused-vars
       var propInterceptors = getPropInterceptors(restProps.editorId || restProps.id);
       if (propInterceptors.length === 0) {
         return restProps;
@@ -6918,6 +6930,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       if (placeholder && fixPlaceholder && editorState.isEmpty() && editorState.getCurrentContent().getFirstBlock().getType() !== 'unstyled') {
         placeholder = '';
       }
+      console.log(editorState);
       var draftProps = editor_objectSpread(editor_objectSpread({
         ref: function ref(instance) {
           _this4.draftInstance = instance;
@@ -6957,10 +6970,18 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
-      if (JSON.stringify(nextProps) !== prevState.propsStr) {
+      var _ref2 = nextProps || {},
+        defaultValue = _ref2.defaultValue,
+        value = _ref2.value,
+        onChange = _ref2.onChange,
+        otherProps = _objectWithoutProperties(_ref2, _excluded3);
+      var str = JSON.stringify(editor_objectSpread(editor_objectSpread({}, otherProps), {}, {
+        value: value === null || value === void 0 ? void 0 : value.toHTML()
+      }));
+      if (str !== prevState.propsStr) {
         return {
           exec: true,
-          propsStr: JSON.stringify(nextProps)
+          propsStr: str
         };
       }
       return null;
@@ -7013,13 +7034,11 @@ external_draft_js_.EditorState.createFrom = function (content) {
   var editorState = null;
   if (content instanceof external_draft_js_.EditorState) {
     editorState = content;
-  }
-  if (_typeof(content) === 'object' && content && content.blocks && content.entityMap) {
+  } else if (typeof_typeof(content) === 'object' && content && content.blocks && content.entityMap) {
     editorState = (0,external_braft_convert_2_.convertRawToEditorState)(content, getDecorators(customOptions.editorId));
-  }
-  if (typeof content === 'string') {
+  } else if (typeof content === 'string') {
     try {
-      if (/^(-)?\d+$/.test(content)) {
+      if (/<([a-z][\s\S]*)>.*<\/\1>/i.test(content)) {
         editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
       } else {
         editorState = external_draft_js_.EditorState.createFrom(JSON.parse(content), customOptions);
@@ -7027,8 +7046,7 @@ external_draft_js_.EditorState.createFrom = function (content) {
     } catch (error) {
       editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content, getDecorators(customOptions.editorId), customOptions, 'create');
     }
-  }
-  if (typeof content === 'number') {
+  } else if (typeof content === 'number') {
     editorState = (0,external_braft_convert_2_.convertHTMLToEditorState)(content.toLocaleString().replace(/,/g, ''), getDecorators(customOptions.editorId), customOptions, 'create');
   } else {
     editorState = external_draft_js_.EditorState.createEmpty(getDecorators(customOptions.editorId));
