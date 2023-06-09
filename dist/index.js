@@ -5493,7 +5493,7 @@ var toggleFontSize = function toggleFontSize(event, props) {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-  console.log(props.editorState, fontSize, external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
+  // console.log(props.editorState,fontSize,ContentUtils.toggleSelectionFontSize(props.editorState, fontSize))
   props.editor.setValue(external_braft_utils_2_.ContentUtils.toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.requestFocus();
   return true;
@@ -6673,7 +6673,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       editorState: defaultEditorState,
       isFullscreen: false,
       propsStr: JSON.stringify(editor_objectSpread(editor_objectSpread({}, otherProps), {}, {
-        value: value === null || value === void 0 ? void 0 : value.toHTML()
+        value: value && value instanceof external_draft_js_.EditorState ? value === null || value === void 0 ? void 0 : value.toHTML() : value
       }))
     };
     _this.containerNode = null;
@@ -6930,7 +6930,9 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
       if (placeholder && fixPlaceholder && editorState.isEmpty() && editorState.getCurrentContent().getFirstBlock().getType() !== 'unstyled') {
         placeholder = '';
       }
-      console.log(editorState);
+
+      // console.log(editorState);
+
       var draftProps = editor_objectSpread(editor_objectSpread({
         ref: function ref(instance) {
           _this4.draftInstance = instance;
@@ -6976,7 +6978,7 @@ var BraftEditor = /*#__PURE__*/function (_React$Component) {
         onChange = _ref2.onChange,
         otherProps = _objectWithoutProperties(_ref2, _excluded3);
       var str = JSON.stringify(editor_objectSpread(editor_objectSpread({}, otherProps), {}, {
-        value: value === null || value === void 0 ? void 0 : value.toHTML()
+        value: value && value instanceof external_draft_js_.EditorState ? value === null || value === void 0 ? void 0 : value.toHTML() : value
       }));
       if (str !== prevState.propsStr) {
         return {

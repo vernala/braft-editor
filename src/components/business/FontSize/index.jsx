@@ -18,7 +18,7 @@ const toggleFontSize = (event, props) => {
   if (!isNaN(fontSize)) {
     fontSize = hookReturns;
   }
-  console.log(props.editorState,fontSize,ContentUtils.toggleSelectionFontSize(props.editorState, fontSize))
+  // console.log(props.editorState,fontSize,ContentUtils.toggleSelectionFontSize(props.editorState, fontSize))
   props.editor.setValue(
     ContentUtils.toggleSelectionFontSize(props.editorState, fontSize),
   );

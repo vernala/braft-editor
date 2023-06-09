@@ -134,7 +134,7 @@ class BraftEditor extends React.Component {
       isFullscreen: false,
       propsStr: JSON.stringify({
         ...otherProps,
-        value: value?.toHTML(),
+        value: value && value instanceof EditorState ? value?.toHTML() : value,
       }),
     };
     this.containerNode = null;
@@ -165,7 +165,7 @@ class BraftEditor extends React.Component {
     const { defaultValue, value, onChange, ...otherProps } = nextProps || {};
     const str = JSON.stringify({
       ...otherProps,
-      value: value?.toHTML(),
+      value: value && value instanceof EditorState ? value?.toHTML() : value,
     });
     if (str !== prevState.propsStr) {
       return { exec: true, propsStr: str };
@@ -583,7 +583,7 @@ class BraftEditor extends React.Component {
       placeholder = '';
     }
 
-    console.log(editorState);
+    // console.log(editorState);
 
     const draftProps = {
       ref: (instance) => {
